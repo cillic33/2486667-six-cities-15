@@ -1,4 +1,4 @@
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {Review} from '@/types/reviews';
 import {fetchReviews, postReview} from '@/store/thunks/reviews';
@@ -40,7 +40,7 @@ const reviewsSlice = createSlice({
         state.postStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'reviews',
+  name: NameSpace.Reviews,
   reducers: {
     clear(state: ReviewsState) {
       state.reviews = [];

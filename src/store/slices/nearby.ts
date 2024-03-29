@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchNearOffers} from '@/store/thunks/nearby';
 
@@ -27,7 +27,7 @@ const nearbySlice = createSlice({
         state.status = RequestStatus.Failed;
       }),
   initialState,
-  name: 'nearby',
+  name: NameSpace.Nearby,
   reducers: {
     clear(state: NearbyState) {
       state.nearOffers = [];

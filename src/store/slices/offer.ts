@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffer} from '@/store/thunks/offer';
 
@@ -27,7 +27,7 @@ const offerSlice = createSlice({
         state.status = RequestStatus.Failed;
       }),
   initialState,
-  name: 'offer',
+  name: NameSpace.Offer,
   reducers: {
     clear(state: OfferState) {
       state.offer = null;

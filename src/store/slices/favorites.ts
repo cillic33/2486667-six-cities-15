@@ -1,4 +1,4 @@
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {changeFavorite, fetchFavorites} from '@/store/thunks/favorites';
 import {FavoriteStatus} from '@/types/favorites';
@@ -49,7 +49,7 @@ const favoritesSlice = createSlice({
         state.changeStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'favorites',
+  name: NameSpace.Favorites,
   reducers: {
     clear(state: FavoritesState) {
       state.favorites = [];

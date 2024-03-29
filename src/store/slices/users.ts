@@ -1,4 +1,4 @@
-import {AuthStatus, RequestStatus} from '@/utils/const';
+import {AuthStatus, NameSpace, RequestStatus} from '@/utils/const';
 import {UserData} from '@/types/user';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
@@ -51,7 +51,7 @@ const usersSlice = createSlice({
         state.requestStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'users',
+  name: NameSpace.Users,
   reducers: {
     setUser: (state, action: PayloadAction<UserData | null>) => {
       state.user = action.payload;

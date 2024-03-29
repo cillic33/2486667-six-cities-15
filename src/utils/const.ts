@@ -49,3 +49,12 @@ export const enum RequestStatus {
   Success = 'Success',
   Failed = 'Failed',
 }
+
+export enum NameSpace {
+  Offers ='offers',
+  Offer = 'offer',
+  Favorites = 'favorites',
+  Users = 'users',
+  Reviews = 'reviews',
+  Nearby = 'nearby',
+}
