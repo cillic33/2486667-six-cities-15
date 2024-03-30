@@ -5,6 +5,9 @@ import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions} from '@/store/slices/favorites';
 import {offersActions} from '@/store/slices/offers';
 import {MouseEvent} from 'react';
+import {useAuth} from "@/hooks/user-authorisation/user-authorisation";
+import {useNavigate} from "react-router-dom";
+import {AppRoute} from "@/utils/const";
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -16,18 +19,25 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
   const { changeFavorite } = useActionCreators(favoritesActions);
   const { updateFavoriteStatus } = useActionCreators(offersActions);
+  const isAuth = useAuth();
+  const navigate = useNavigate();
 
   const clickBookmarkHandle = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    setCurrentIsFavorite(!currentIsFavorite);
 
-    const changeFavoriteArgs: ChangeFavoriteArgs = {
-      offerId,
-      status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
-    };
-    changeFavorite(changeFavoriteArgs).then(() => {
-      updateFavoriteStatus(changeFavoriteArgs);
-    });
+    if (isAuth) {
+      setCurrentIsFavorite(!currentIsFavorite);
+
+      const changeFavoriteArgs: ChangeFavoriteArgs = {
+        offerId,
+        status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
+      };
+      changeFavorite(changeFavoriteArgs).then(() => {
+        updateFavoriteStatus(changeFavoriteArgs);
+      });
+    } else {
+      navigate(AppRoute.Login);
+    }
   };
 
   return (
@@ -35,7 +45,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       className={clsx(
         `${block}__bookmark-button`,
         'button',
-        currentIsFavorite && `${block}__bookmark-button--active`
+        isAuth && currentIsFavorite && `${block}__bookmark-button--active`
       )}
       type="button"
       onClick={clickBookmarkHandle}
@@ -48,7 +58,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">
-        {currentIsFavorite ? 'In bookmarks' : 'To bookmarks'}
+        {isAuth && currentIsFavorite ? 'In bookmarks' : 'To bookmarks'}
       </span>
     </button>
   );
