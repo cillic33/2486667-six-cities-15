@@ -11,13 +11,14 @@ export default function LoginForm() {
   const formSubmitHandle = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (login.current !== null && password.current !== null) {
-      const authData: AuthData = {
-        login: login.current?.value || '',
-        password: password.current?.value || '',
-      };
-      loginUser(authData);
-    }
+    const loginValue = login.current?.value || '';
+    const passwordValue = password.current?.value || '';
+    const authData: AuthData = {
+      login: loginValue,
+      password: passwordValue,
+    };
+
+    loginUser(authData);
   };
 
   return (
@@ -34,7 +35,6 @@ export default function LoginForm() {
           name="login"
           placeholder="Email"
           required
-          //value="Oliver.conner@gmail.com"
           ref={login}
         />
       </div>
@@ -47,10 +47,12 @@ export default function LoginForm() {
           placeholder="Password"
           required
           autoComplete="on"
-          //value="password1"
           ref={password}
+          pattern="(?=.*\d)(?=.*[a-z]).{2,}"
+          title="Пароль состоит минимум из одной буквы и цифры"
         />
       </div>
+
       <button className="login__submit form__submit button" type="submit">Sign in</button>
     </form>
   );
