@@ -59,6 +59,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={fieldChangeHandler}
         value={formData.comment}
+        maxLength={300}
       >
       </textarea>
 
