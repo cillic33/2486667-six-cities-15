@@ -51,6 +51,7 @@ const reviewsSlice = createSlice({
   selectors: {
     reviews: (state: ReviewsState) => state.reviews,
     status: (state: ReviewsState) => state.getStatus,
+    postStatus: (state: ReviewsState) => state.postStatus,
   },
 });
 

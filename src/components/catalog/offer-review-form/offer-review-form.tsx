@@ -2,10 +2,12 @@ import {FormEvent, ReactEventHandler, useState} from 'react';
 import RatingStars from '@/components/common/rating-stars/rating-stars';
 import {PostReviewArg} from '@/types/reviews';
 import {useParams} from 'react-router-dom';
-import {useActionCreators} from '@/hooks/store/store';
-import {reviewsActions} from '@/store/slices/reviews';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
+import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
+import {RequestStatus} from "@/utils/const";
+import '@/components/catalog/offer-review-form/styles.css';
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -20,6 +22,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
     rating: 0,
   });
   const { postReview } = useActionCreators(reviewsActions);
+  const postStatus = useAppSelector(reviewsSelectors.postStatus);
 
   const fieldChangeHandler: TFieldChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
@@ -47,36 +50,38 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating">
-        <RatingStars fieldChangeHandler={fieldChangeHandler} rating={formData.rating} />
-      </div>
+      <fieldset className="reviews__fieldset" disabled={postStatus === RequestStatus.Loading}>
+        <label className="reviews__label form__label" htmlFor="review">Your review</label>
+        <div className="reviews__rating-form form__rating">
+          <RatingStars fieldChangeHandler={fieldChangeHandler} rating={formData.rating} />
+        </div>
 
-      <textarea
-        className="reviews__textarea form__textarea"
-        id="comment"
-        name="comment"
-        placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={fieldChangeHandler}
-        value={formData.comment}
-        maxLength={300}
-      >
-      </textarea>
-
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-          your stay with at least <b className="reviews__text-amount">50 characters</b>.
-        </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled={(formData.rating) === 0 || (formData.comment).length < 50}
-          onClick={submitHandler}
+        <textarea
+          className="reviews__textarea form__textarea"
+          id="comment"
+          name="comment"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          onChange={fieldChangeHandler}
+          value={formData.comment}
+          maxLength={300}
         >
-          Submit
-        </button>
-      </div>
+        </textarea>
+
+        <div className="reviews__button-wrapper">
+          <p className="reviews__help">
+            To submit review please make sure to set <span className="reviews__star">rating</span> and describe
+            your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          </p>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled={(formData.rating) === 0 || (formData.comment).length < 50}
+            onClick={submitHandler}
+          >
+            Submit
+          </button>
+        </div>
+      </fieldset>
     </form>
   );
 }

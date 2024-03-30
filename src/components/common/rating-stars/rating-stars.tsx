@@ -1,5 +1,6 @@
 import {RATING} from './const';
 import {Fragment, ReactEventHandler} from 'react';
+import '@/components/common/rating-stars/styles.css';
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
