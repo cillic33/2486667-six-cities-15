@@ -22,7 +22,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
     rating: 0,
   });
   const { postReview } = useActionCreators(reviewsActions);
-  const postStatus = useAppSelector(reviewsSelectors.postStatus);
+  const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
 
   const fieldChangeHandler: TFieldChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
@@ -50,7 +50,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <fieldset className="reviews__fieldset" disabled={postStatus === RequestStatus.Loading}>
+      <fieldset className="reviews__fieldset" disabled={postReviewStatus === RequestStatus.Loading}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           <RatingStars fieldChangeHandler={fieldChangeHandler} rating={formData.rating} />
