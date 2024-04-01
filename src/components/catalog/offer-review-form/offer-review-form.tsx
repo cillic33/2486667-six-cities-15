@@ -6,7 +6,7 @@ import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
-import {RequestStatus} from "@/utils/const";
+import {RequestStatus} from '@/utils/const';
 import '@/components/catalog/offer-review-form/styles.css';
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
