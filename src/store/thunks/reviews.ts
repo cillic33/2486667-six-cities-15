@@ -1,5 +1,5 @@
 import {Endpoint} from '@/utils/const';
-import {PostReviewArg, Review} from '@/types/reviews';
+import {PostReviewBody, Review} from '@/types/reviews';
 import {createAppAsyncThunk} from '@/hooks/store/store';
 
 const fetchReviews = createAppAsyncThunk<Review[], string>(
@@ -11,7 +11,7 @@ const fetchReviews = createAppAsyncThunk<Review[], string>(
   },
 );
 
-const postReview = createAppAsyncThunk<Review, PostReviewArg>(
+const postReview = createAppAsyncThunk<Review, PostReviewBody>(
   'data/postReview',
   async (args, { extra: api }) => {
     const {data} = await api.post<Review>(`${Endpoint.Reviews}/${args.offerId}`, {comment: args.comment, rating: args.rating});

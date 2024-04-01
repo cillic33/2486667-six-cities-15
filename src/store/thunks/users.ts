@@ -1,4 +1,4 @@
-import {AuthData, UserData} from '@/types/user';
+import {AuthorizationData, UserData} from '@/types/user';
 import {Endpoint} from '@/utils/const';
 import {createAppAsyncThunk} from '@/hooks/store/store';
 import {dropToken, saveToken} from '@/services/token';
@@ -12,7 +12,7 @@ const checkAuth = createAppAsyncThunk<UserData, undefined>(
   },
 );
 
-const loginUser = createAppAsyncThunk<UserData, AuthData>(
+const loginUser = createAppAsyncThunk<UserData, AuthorizationData>(
   'user/login',
   async ({login: email, password}, {extra: api}) => {
     const {data} = await api.post<UserData>(Endpoint.Login, {email, password});

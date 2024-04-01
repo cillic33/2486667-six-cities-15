@@ -8,6 +8,6 @@ export type City = {
 
 export type CityShot = Required<Omit<City, 'location'>>;
 
-export type AppRouteOnlyCitiesType = {
+export type AppRouteOnlyCities = {
   [key: string]: CityShot;
 }

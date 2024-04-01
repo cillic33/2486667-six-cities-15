@@ -1,15 +1,15 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
-import {AuthData} from '@/types/user';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {RequestStatus} from '@/utils/const';
 import '@/components/common/login-form/styles.css';
 import {PASSWORD_NOTE, PASSWORD_PATTERN} from '@/components/common/login-form/const';
+import {AuthorizationData} from "@/types/user";
 
 export default function LoginForm() {
   const { loginUser } = useActionCreators(usersActions);
   const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
-  const [formData, setFormData] = useState<AuthData>({
+  const [formData, setFormData] = useState<AuthorizationData>({
     login: '',
     password: '',
   });

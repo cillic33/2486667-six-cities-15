@@ -8,7 +8,7 @@ export type Review = {
   user: User;
 }
 
-export type PostReviewArg = {
+export type PostReviewBody = {
   offerId: string;
   comment: string;
   rating: number;

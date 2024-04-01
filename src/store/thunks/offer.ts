@@ -5,7 +5,7 @@ import {createAppAsyncThunk} from '@/hooks/store/store';
 const fetchOffer = createAppAsyncThunk<Offer, string>(
   'data/fetchOffer',
   async (offerId, { extra: api }) => {
-    const {data} = await api.get<Offer>(Endpoint.Offer + offerId);
+    const {data} = await api.get<Offer>(`${Endpoint.Offers}/${offerId}`);
 
     return data;
   },

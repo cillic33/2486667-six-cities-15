@@ -2,7 +2,7 @@ import {ConvertDate} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
 import {OfferPreview} from '@/types/offer-preview';
 
-export function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
+function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
     const location = current.city.name;
 
@@ -17,14 +17,16 @@ export function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
   }, {});
 }
 
-export function getRatingWidth(rating: number): string {
+function getRatingWidth(rating: number): string {
   return `${((Math.round(rating) / 5) * 100)}%`;
 }
 
-export const convertDate = (str: string): ConvertDate => {
+const convertDate = (str: string): ConvertDate => {
   const date = new Date(str);
   const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
   const fullDate = str.slice(0, 10);
 
   return {monthYear, fullDate};
 };
+
+export {getFavoritesByLocation, getRatingWidth, convertDate};

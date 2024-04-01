@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthStatus, CITIES, RequestStatus} from '@/utils/const';
+import {AppRoute, AuthorizationStatus, CITIES, RequestStatus} from '@/utils/const';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
 import FavoritesPage from '@/pages/favorites-page/favorites-page';
@@ -21,10 +21,10 @@ export default function App(): JSX.Element {
     checkAuth();
   }, [fetchOffers, checkAuth]);
 
-  const authStatus = useAppSelector(usersSelectors.authorizationStatus);
+  const authorizationStatus = useAppSelector(usersSelectors.authorizationStatus);
   const offersRequestStatus = useAppSelector(offersSelectors.requestStatus);
 
-  if (authStatus === AuthStatus.Unknown || offersRequestStatus === RequestStatus.Loading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || offersRequestStatus === RequestStatus.Loading) {
     return (
       <LoadingScreen />
     );

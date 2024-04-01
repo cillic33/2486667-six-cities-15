@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRouteOnlyCities} from '@/utils/const';
+import {appRouteOnlyCities} from '@/utils/const';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
@@ -9,7 +9,7 @@ import {randomProperty} from '@/pages/login-page/utils';
 import {CityShot} from '@/types/city';
 
 export default function LoginPage() {
-  const randomRoute: CityShot = randomProperty(AppRouteOnlyCities);
+  const randomRoute: CityShot = randomProperty(appRouteOnlyCities);
 
   return (
     <Container extraClass="page--gray page--login">

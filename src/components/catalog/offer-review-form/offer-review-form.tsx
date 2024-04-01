@@ -1,6 +1,6 @@
 import {FormEvent, ReactEventHandler, useState} from 'react';
 import RatingStars from '@/components/common/rating-stars/rating-stars';
-import {PostReviewArg} from '@/types/reviews';
+import {PostReviewBody} from '@/types/reviews';
 import {useParams} from 'react-router-dom';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
@@ -17,7 +17,7 @@ type OfferReviewFormProps = {
 
 export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
   const { id } = useParams();
-  const [formData, setFormData] = useState<Omit<PostReviewArg, 'offerId'>>({
+  const [formData, setFormData] = useState<Omit<PostReviewBody, 'offerId'>>({
     comment: '',
     rating: 0,
   });
@@ -32,13 +32,13 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
 
-    const postReviewArg: PostReviewArg = {
+    const postReviewBody: PostReviewBody = {
       offerId: id as string,
       comment: formData.comment,
       rating: Number(formData.rating),
     };
 
-    postReview(postReviewArg).then(() => {
+    postReview(postReviewBody).then(() => {
       toast.info(SUBMIT_SUCCESS_MESSAGE);
       setFormData({
         comment: '',

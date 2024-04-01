@@ -1,4 +1,4 @@
-import {AppRouteOnlyCitiesType, City} from '@/types/city';
+import {AppRouteOnlyCities, City} from '@/types/city';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 
 export enum AppRoute {
@@ -15,7 +15,7 @@ export enum AppRoute {
   NotFound = '*',
 }
 
-export const AppRouteOnlyCities: AppRouteOnlyCitiesType = {
+export const appRouteOnlyCities: AppRouteOnlyCities = {
   Paris: {name: 'Paris', id: '/paris'},
   Amsterdam: {name: 'Amsterdam', id: '/amsterdam'},
   Cologne: {name: 'Cologne', id: '/cologne'},
@@ -81,9 +81,9 @@ export const CITIES: City[] = [
   }
 ];
 
-export enum AuthStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
+export enum AuthorizationStatus {
+  Authorized = 'AUTHORIZED',
+  NoAuthorized = 'NO_AUTHORIZED',
   Unknown = 'UNKNOWN',
 }
 
@@ -101,7 +101,6 @@ export const SORT_OPTION_DEFAULT = SortOption.Popular;
 
 export enum Endpoint {
   Offers = '/offers',
-  Offer = '/offers/',
   Nearby = '/nearby',
   Favorite = '/favorite',
   Reviews = '/comments',

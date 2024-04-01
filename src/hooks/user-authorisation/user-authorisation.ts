@@ -1,9 +1,9 @@
 import {useAppSelector} from '@/hooks/store/store';
 import {usersSelectors} from '@/store/slices/users';
-import {AuthStatus} from '@/utils/const';
+import {AuthorizationStatus} from '@/utils/const';
 
 export function useAuth(): boolean {
-  const authStatus = useAppSelector(usersSelectors.authorizationStatus);
+  const authorizationStatus = useAppSelector(usersSelectors.authorizationStatus);
 
-  return authStatus === AuthStatus.Auth;
+  return authorizationStatus === AuthorizationStatus.Authorized;
 }

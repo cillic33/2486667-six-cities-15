@@ -4,7 +4,7 @@ export type User = {
   isPro: boolean;
 }
 
-export type AuthData = {
+export type AuthorizationData = {
   login: string;
   password: string;
 }

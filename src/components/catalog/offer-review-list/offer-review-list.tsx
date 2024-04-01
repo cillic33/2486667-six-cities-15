@@ -32,7 +32,7 @@ export default function OfferReviewList({ reviews }: OfferReviewListProps): JSX.
 
       <a href="#"
         onClick={showClickHandle}
-        className={clsx('showBtn', sortedVisibleReviews.length === sortedReviews.length && HIDDEN_CLASS)}
+        className={clsx('reviews__list__show-more-btn', sortedVisibleReviews.length === sortedReviews.length && HIDDEN_CLASS)}
       >
         Show more
       </a>
