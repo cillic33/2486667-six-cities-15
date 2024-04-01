@@ -22,7 +22,7 @@ export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Elemen
     <section className="offer__reviews reviews">
       <h2 className="reviews__title" ref={titleRef}>Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
-      <OfferReviewList reviews={reviews} scrollToTitle={scrollToTitle} />
+      <OfferReviewList reviews={reviews} />
 
       {isAuth && <OfferReviewForm scrollToTitle={scrollToTitle} />}
       {!isAuth &&
