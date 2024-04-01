@@ -63,6 +63,7 @@ const usersSlice = createSlice({
   selectors: {
     user: (state: UsersState) => state.user,
     authorizationStatus: (state: UsersState) => state.authorizationStatus,
+    requestStatus: (state: UsersState) => state.requestStatus,
   },
 });
 
