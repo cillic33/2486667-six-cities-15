@@ -6,7 +6,7 @@ export type City = {
   location: Location;
 }
 
-export type CityShot = Omit<City, 'location'>;
+export type CityShot = Required<Omit<City, 'location'>>;
 
 export type AppRouteOnlyCitiesType = {
   [key: string]: CityShot;
