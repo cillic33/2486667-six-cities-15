@@ -1,12 +1,13 @@
 import {clsx} from 'clsx';
-import {useState, MouseEvent} from 'react';
-import {useActionCreators} from '@/hooks/store/store';
+import {MouseEvent, useState} from 'react';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
-import {favoritesActions} from '@/store/slices/favorites';
+import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
 import {offersActions} from '@/store/slices/offers';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 import {useNavigate} from 'react-router-dom';
-import {AppRoute} from '@/utils/const';
+import {AppRoute, RequestStatus} from '@/utils/const';
+import '@/components/catalog/offer-bookmark/styles.css';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -18,6 +19,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
   const { changeFavorite } = useActionCreators(favoritesActions);
   const { updateFavoriteStatus } = useActionCreators(offersActions);
+  const changeFavoriteStatus = useAppSelector(favoritesSelectors.changeStatus);
   const isAuth = useAuth();
   const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
         offerId,
         status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
       };
+
       changeFavorite(changeFavoriteArgs).then(() => {
         updateFavoriteStatus(changeFavoriteArgs);
       });
@@ -48,6 +51,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       )}
       type="button"
       onClick={clickBookmarkHandle}
+      disabled={changeFavoriteStatus === RequestStatus.Loading}
     >
       <svg
         className={`${block}__bookmark-icon`}
