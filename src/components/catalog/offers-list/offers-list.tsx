@@ -6,7 +6,7 @@ import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {City} from '@/types/city';
 import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
-import {getSortedOffers} from '@/components/catalog/offers-list/utils';
+import {getPageTitle, getSortedOffers} from '@/components/catalog/offers-list/utils';
 import {offersSelectors} from '@/store/slices/offers';
 
 type OffersListProps = {
@@ -32,7 +32,7 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
 
-        <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
+        <b className="places__found">{getPageTitle(offers.length, currentCity.name)}</b>
 
         <OffersSort />
 
