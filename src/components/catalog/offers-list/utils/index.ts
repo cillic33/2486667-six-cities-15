@@ -29,4 +29,4 @@ export const getPageTitle = (count: number, name: string): string => {
   const postfix = count > 1 ? 's' : '';
 
   return `${count} place${postfix} to stay in ${name}`;
-}
+};

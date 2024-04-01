@@ -1,7 +1,7 @@
 import {Offer} from '@/types/offer';
 import {getRatingWidth} from '@/utils';
-import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
 import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/utils/const';
+import OfferBookmark from '@/components/catalog/offer-bookmark';
 
 type OfferDescriptionProps = {
   offer: Offer;
