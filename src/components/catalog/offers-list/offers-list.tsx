@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
@@ -8,6 +8,7 @@ import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
 import {getPageTitle, getSortedOffers} from '@/components/catalog/offers-list/utils';
 import {offersSelectors} from '@/store/slices/offers';
+import {useLocation} from 'react-router-dom';
 
 type OffersListProps = {
   offers: Offer[];
@@ -19,6 +20,8 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
   const [activePoint, setActivePoint] = useState<Location | null>(null);
   const sortOption = useAppSelector(offersSelectors.sortOption);
   const sortedOffers = getSortedOffers(sortOption, offers);
+  const containerRef = useRef<HTMLHeadingElement | null>(null);
+  const { pathname } = useLocation();
 
   const hoverHandler = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
@@ -27,9 +30,17 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
 
   const points = offers.map((offer) => offer.location);
 
+  const scrollToTopContainer = () => {
+    containerRef.current?.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    scrollToTopContainer();
+  }, [pathname]);
+
   return (
     <div className="cities__places-container container">
-      <section className="cities__places places">
+      <section className="cities__places places" ref={containerRef}>
         <h2 className="visually-hidden">Places</h2>
 
         <b className="places__found">{getPageTitle(offers.length, currentCity.name)}</b>
