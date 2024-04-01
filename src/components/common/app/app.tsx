@@ -1,24 +1,18 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthStatus, RequestStatus} from '@/utils/const';
-import {City} from '@/types/city';
+import {AppRoute, AuthStatus, CITIES, RequestStatus} from '@/utils/const';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
 import FavoritesPage from '@/pages/favorites-page/favorites-page';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
-import {CITIES} from '@/mocks/cities';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
 
-type AppProps = {
-  cities: City[];
-}
-
-export default function App({ cities }: AppProps): JSX.Element {
+export default function App(): JSX.Element {
   const { fetchOffers } = useActionCreators(offersActions);
   const { checkAuth } = useActionCreators(usersActions);
 
@@ -40,10 +34,10 @@ export default function App({ cities }: AppProps): JSX.Element {
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<MainPage cities={cities} />}
+        element={<MainPage cities={CITIES} />}
       >
         {CITIES.map((city) =>
-          <Route key={city.id} element={<MainPage cities={cities}/>} path={city.id}/>
+          <Route key={city.id} element={<MainPage cities={CITIES}/>} path={city.id}/>
         )}
       </Route>
       <Route
@@ -52,7 +46,7 @@ export default function App({ cities }: AppProps): JSX.Element {
       />
       <Route
         path={AppRoute.Favorites}
-        element={<ProtectedRoute><FavoritesPage cities={cities} /></ProtectedRoute>}
+        element={<ProtectedRoute><FavoritesPage /></ProtectedRoute>}
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
