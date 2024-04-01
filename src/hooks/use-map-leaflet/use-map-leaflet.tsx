@@ -1,8 +1,7 @@
 import {RefObject, useEffect, useRef, useState} from 'react';
-import leaflet from 'leaflet';
+import leaflet, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {City} from '@/types/city';
-import {Map} from 'leaflet';
 import {TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from './const';
 
 export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, currentCity: City) {

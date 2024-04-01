@@ -1,10 +1,9 @@
 import {clsx} from 'clsx';
-import {useState} from 'react';
+import {useState, MouseEvent} from 'react';
 import {useActionCreators} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions} from '@/store/slices/favorites';
 import {offersActions} from '@/store/slices/offers';
-import {MouseEvent} from 'react';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';

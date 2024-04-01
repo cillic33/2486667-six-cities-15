@@ -1,6 +1,5 @@
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate, useLocation, Location} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
-import {Location} from 'react-router-dom';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 
 type ProtectedRouteProps = {

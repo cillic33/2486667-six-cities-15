@@ -1,8 +1,7 @@
-import leaflet from 'leaflet';
+import leaflet, {Map} from 'leaflet';
 import {DEFAULT_CUSTOM_ICON, CURRENT_CUSTOM_ICON} from './const';
 import {useEffect} from 'react';
 import {Location} from '@/types/location';
-import {Map} from 'leaflet';
 
 export default function useMapLeafletMarkers(map: Map, points: Location[], currentPoint: Location | null): void {
   useEffect(() => {
