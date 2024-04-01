@@ -1,5 +1,6 @@
 import {convertDate, getRatingWidth} from '@/utils';
 import {Review} from '@/types/reviews';
+import '@/components/catalog/offer-review-item/styles.css';
 
 type OfferReviewItemProps = {
   review: Review;
@@ -25,7 +26,7 @@ export default function OfferReviewItem({ review }: OfferReviewItemProps) {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <p className="reviews__text" style={{wordBreak: 'break-all'}}>
+        <p className="reviews__text reviews__text_word-break">
           {review.comment}
         </p>
         <time className="reviews__time" dateTime={fullDate}>{monthYear}</time>
