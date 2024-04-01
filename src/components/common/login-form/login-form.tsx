@@ -1,27 +1,27 @@
-import {FormEvent, useRef} from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {AuthData} from '@/types/user';
 import {usersActions, usersSelectors} from '@/store/slices/users';
-import {RequestStatus} from "@/utils/const";
+import {RequestStatus} from '@/utils/const';
 import '@/components/common/login-form/styles.css';
+import {PASSWORD_NOTE, PASSWORD_PATTERN} from '@/components/common/login-form/const';
 
 export default function LoginForm() {
   const { loginUser } = useActionCreators(usersActions);
   const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
-  const login = useRef<HTMLInputElement | null>(null);
-  const password = useRef<HTMLInputElement | null>(null);
+  const [formData, setFormData] = useState<AuthData>({
+    login: '',
+    password: '',
+  });
+
+  const fieldsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({...formData, [event.target.name]: event.target.value});
+  };
 
   const formSubmitHandle = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const loginValue = login.current?.value || '';
-    const passwordValue = password.current?.value || '';
-    const authData: AuthData = {
-      login: loginValue,
-      password: passwordValue,
-    };
-
-    loginUser(authData);
+    loginUser(formData);
   };
 
   return (
@@ -39,7 +39,8 @@ export default function LoginForm() {
             name="login"
             placeholder="Email"
             required
-            ref={login}
+            value={formData.login}
+            onChange={fieldsChangeHandler}
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -51,12 +52,12 @@ export default function LoginForm() {
             placeholder="Password"
             required
             autoComplete="on"
-            ref={password}
-            pattern="(?=.*\d)(?=.*[a-z]).{2,}"
-            title="Пароль состоит минимум из одной буквы и цифры"
+            pattern={PASSWORD_PATTERN}
+            title={PASSWORD_NOTE}
+            value={formData.password}
+            onChange={fieldsChangeHandler}
           />
         </div>
-
         <button className="login__submit form__submit button" type="submit">Sign in</button>
       </fieldset>
     </form>
