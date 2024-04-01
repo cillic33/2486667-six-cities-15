@@ -21,11 +21,11 @@ import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 export default function OfferPage(): JSX.Element {
   const offer = useAppSelector(offerSelectors.offer);
-  const offerStatus = useAppSelector(offerSelectors.status);
+  const offerRequestStatus = useAppSelector(offerSelectors.requestStatus);
   const reviews = useAppSelector(reviewsSelectors.reviews);
-  const reviewsStatus = useAppSelector(reviewsSelectors.status);
+  const reviewsRequestStatus = useAppSelector(reviewsSelectors.requestStatus);
   const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
-  const nearStatus = useAppSelector(nearbySelectors.status);
+  const nearRequestStatus = useAppSelector(nearbySelectors.requestStatus);
 
   const { fetchOffer } = useActionCreators(offerActions);
   const { fetchNearOffers } = useActionCreators(nearbyActions);
@@ -39,51 +39,48 @@ export default function OfferPage(): JSX.Element {
     }
   }, [id, fetchOffer, fetchNearOffers, fetchReviews]);
 
-  if (offerStatus === RequestStatus.Loading ||
-      nearStatus === RequestStatus.Loading ||
-      reviewsStatus === RequestStatus.Loading) {
-    return <LoadingScreen />;
-  }
+  if (!(offerRequestStatus === RequestStatus.Loading ||
+    nearRequestStatus === RequestStatus.Loading ||
+    reviewsRequestStatus === RequestStatus.Loading)) {
+    if (!offer || offerRequestStatus === RequestStatus.Failed) {
+      return <NotFoundPage type='offer'/>;
+    }
+    const currentCity: City = offer.city;
+    const activePoint = offer.location;
+    const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer];
+    const nearPoints = nearOffersPlusCurrent.map((item) => item.location);
+    return (
+      <Container>
+        <HelmetComponent title="6 cities: offer"/>
 
-  if (!offer || offerStatus === RequestStatus.Failed) {
-    return <NotFoundPage type='offer' />;
-  }
+        <Header/>
 
-  const currentCity: City = offer.city;
-  const activePoint = offer.location;
+        <MainContainer extraClass="page__main--offer">
+          {offer &&
+            <section className="offer">
+              <OfferGallary images={offer.images}/>
 
-  const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer];
-  const nearPoints = nearOffersPlusCurrent.map((item) => item.location);
+              <div className="offer__container container">
+                <div className="offer__wrapper">
+                  <OfferDescription offer={offer}/>
 
-  return (
-    <Container>
-      <HelmetComponent title="6 cities: offer" />
-
-      <Header />
-
-      <MainContainer extraClass="page__main--offer">
-        {offer &&
-          <section className="offer">
-            <OfferGallary images={offer.images} />
-
-            <div className="offer__container container">
-              <div className="offer__wrapper">
-                <OfferDescription offer={offer} />
-
-                <OfferReviews reviews={reviews} />
+                  <OfferReviews reviews={reviews}/>
+                </div>
               </div>
-            </div>
 
-            <MapLeaflet
-              currentCity={currentCity}
-              points={nearPoints}
-              activePoint={activePoint}
-              extraClass="offer__map"
-            />
-          </section>}
+              <MapLeaflet
+                currentCity={currentCity}
+                points={nearPoints}
+                activePoint={activePoint}
+                extraClass="offer__map"
+              />
+            </section>}
 
-        <OfferOtherPlaces offers={nearOffers} />
-      </MainContainer>
-    </Container>
-  );
+          <OfferOtherPlaces offers={nearOffers}/>
+        </MainContainer>
+      </Container>
+    );
+  } else {
+    return <LoadingScreen/>;
+  }
 }

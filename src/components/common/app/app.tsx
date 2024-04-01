@@ -22,9 +22,9 @@ export default function App(): JSX.Element {
   }, [fetchOffers, checkAuth]);
 
   const authStatus = useAppSelector(usersSelectors.authorizationStatus);
-  const status = useAppSelector(offersSelectors.status);
+  const offersRequestStatus = useAppSelector(offersSelectors.requestStatus);
 
-  if (authStatus === AuthStatus.Unknown || status === RequestStatus.Loading) {
+  if (authStatus === AuthStatus.Unknown || offersRequestStatus === RequestStatus.Loading) {
     return (
       <LoadingScreen />
     );

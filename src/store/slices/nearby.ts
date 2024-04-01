@@ -5,26 +5,26 @@ import {fetchNearOffers} from '@/store/thunks/nearby';
 
 interface NearbyState {
   nearOffers: Offer[];
-  status: RequestStatus;
+  requestStatus: RequestStatus;
 }
 
 const initialState: NearbyState = {
   nearOffers: [],
-  status: RequestStatus.Idle,
+  requestStatus: RequestStatus.Idle,
 };
 
 const nearbySlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchNearOffers.pending, (state: NearbyState) => {
-        state.status = RequestStatus.Loading;
+        state.requestStatus = RequestStatus.Loading;
       })
       .addCase(fetchNearOffers.fulfilled, (state: NearbyState, action) => {
-        state.status = RequestStatus.Success;
+        state.requestStatus = RequestStatus.Success;
         state.nearOffers = action.payload;
       })
       .addCase(fetchNearOffers.rejected, (state: NearbyState) => {
-        state.status = RequestStatus.Failed;
+        state.requestStatus = RequestStatus.Failed;
       }),
   initialState,
   name: NameSpace.Nearby,
@@ -35,7 +35,7 @@ const nearbySlice = createSlice({
   },
   selectors: {
     nearOffers: (state: NearbyState) => state.nearOffers,
-    status: (state: NearbyState) => state.status,
+    requestStatus: (state: NearbyState) => state.requestStatus,
   },
 });
 

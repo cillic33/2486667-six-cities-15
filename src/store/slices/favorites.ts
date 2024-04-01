@@ -6,13 +6,13 @@ import {OfferPreview} from '@/types/offer-preview';
 
 interface FavoritesState {
   favorites: OfferPreview[];
-  status: RequestStatus;
+  requestStatus: RequestStatus;
   changeStatus: RequestStatus;
 }
 
 const initialState: FavoritesState = {
   favorites: [],
-  status: RequestStatus.Idle,
+  requestStatus: RequestStatus.Idle,
   changeStatus: RequestStatus.Idle,
 };
 
@@ -20,14 +20,14 @@ const favoritesSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchFavorites.pending, (state: FavoritesState) => {
-        state.status = RequestStatus.Loading;
+        state.requestStatus = RequestStatus.Loading;
       })
       .addCase(fetchFavorites.fulfilled, (state: FavoritesState, action) => {
         state.favorites = action.payload;
-        state.status = RequestStatus.Success;
+        state.requestStatus = RequestStatus.Success;
       })
       .addCase(fetchFavorites.rejected, (state: FavoritesState) => {
-        state.status = RequestStatus.Failed;
+        state.requestStatus = RequestStatus.Failed;
       })
 
       .addCase(changeFavorite.pending, (state: FavoritesState) => {
@@ -53,13 +53,13 @@ const favoritesSlice = createSlice({
   reducers: {
     clear(state: FavoritesState) {
       state.favorites = [];
-      state.status = RequestStatus.Idle;
+      state.requestStatus = RequestStatus.Idle;
       state.changeStatus = RequestStatus.Idle;
     }
   },
   selectors: {
     favorites: (state: FavoritesState) => state.favorites,
-    status: (state: FavoritesState) => state.status,
+    requestStatus: (state: FavoritesState) => state.requestStatus,
   },
 });
 

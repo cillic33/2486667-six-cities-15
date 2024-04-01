@@ -13,10 +13,10 @@ import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 export default function FavoritesPage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelectors.favorites);
-  const status = useAppSelector(favoritesSelectors.status);
+  const favoritesRequestStatus = useAppSelector(favoritesSelectors.requestStatus);
   const favoritesByLocation = getFavoritesByLocation(favorites);
 
-  if (status === RequestStatus.Loading) {
+  if (favoritesRequestStatus === RequestStatus.Loading) {
     return <LoadingScreen />;
   }
 

@@ -4,7 +4,7 @@ import OfferReviewEmpty from '@/components/catalog/offer-review-empty/offer-revi
 import {COUNT_VISIBLE_REVIEWS, HIDDEN_CLASS} from '@/components/catalog/offer-review-list/const';
 import {MouseEvent, useState} from 'react';
 import '@/components/catalog/offer-review-list/styles.css';
-import {clsx} from "clsx";
+import {clsx} from 'clsx';
 
 type OfferReviewListProps = {
   reviews: Review[];
@@ -31,8 +31,8 @@ export default function OfferReviewList({ reviews }: OfferReviewListProps): JSX.
       )}
 
       <a href="#"
-         onClick={showClickHandle}
-         className={clsx('showBtn', sortedVisibleReviews.length === sortedReviews.length && HIDDEN_CLASS)}
+        onClick={showClickHandle}
+        className={clsx('showBtn', sortedVisibleReviews.length === sortedReviews.length && HIDDEN_CLASS)}
       >
         Show more
       </a>
