@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 import {useAppSelector} from '@/hooks/store/store';
-import {useBoolean} from '@/hooks/boolean/boolean';
 import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
 import {offersSelectors} from '@/store/slices/offers';
 import {SORT_OPTIONS} from '@/types/sort';
+import {useBoolean} from '@/hooks/use-boolean/use-boolean';
 
 export default function OffersSort() {
   const {isOn, off, toggle} = useBoolean(false);

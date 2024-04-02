@@ -20,7 +20,7 @@ export default function Header(): JSX.Element {
             <ul className="header__nav-list">
               {isAuth &&
                 <HeaderAuth />}
-              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) && // TODO
+              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) &&
                 <HeaderNoAuth />}
             </ul>
           </nav>
