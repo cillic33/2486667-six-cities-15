@@ -2,7 +2,7 @@ import {Offer} from '@/types/offer';
 import {getRatingWidth} from '@/utils';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
 import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/const';
-import {memo} from "react";
+import {memo} from 'react';
 
 type OfferDescriptionProps = {
   offer: Offer;

@@ -5,15 +5,15 @@ import {clsx} from 'clsx';
 import {getRatingWidth} from '@/utils';
 import {OfferPreview} from '@/types/offer-preview';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
-import {memo} from "react";
+import {memo} from 'react';
 
 type CardProps = {
   offer: Offer | OfferPreview;
   block: string;
-  handleCardHover?: (id: Offer['id'] | null) => void;
+  onCardHover?: (id: Offer['id'] | null) => void;
 }
 
-function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
+function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
   return (
     <Link
       to={`${AppRoute.Offer}/${offer.id}`}
@@ -21,13 +21,13 @@ function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
     >
       <article
         onMouseEnter={() => {
-          if (handleCardHover) {
-            handleCardHover(offer.id);
+          if (onCardHover) {
+            onCardHover(offer.id);
           }
         }}
         onMouseLeave={() => {
-          if (handleCardHover) {
-            handleCardHover(null);
+          if (onCardHover) {
+            onCardHover(null);
           }
         }}
       >

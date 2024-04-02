@@ -4,7 +4,7 @@ import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 import HeaderAuth from '@/components/common/header/header-auth';
 import HeaderNoAuth from '@/components/common/header/header-no-auth';
-import {memo} from "react";
+import {memo} from 'react';
 
 function Header(): JSX.Element {
   const isAuth = useAuth();
