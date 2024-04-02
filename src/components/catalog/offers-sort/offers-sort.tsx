@@ -50,4 +50,6 @@ function OffersSort() {
   );
 }
 
-export default memo(OffersSort);
+const MemoOffersSort = memo(OffersSort);
+
+export default MemoOffersSort;
