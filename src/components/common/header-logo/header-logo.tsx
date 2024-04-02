@@ -8,7 +8,7 @@ export default function HeaderLogo(): JSX.Element {
 
   const isMainPage = () => pathname === '/';
 
-  const handleLogoClick = (event: MouseEvent<HTMLLinkElement>) => {
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (isMainPage()) {
       event.preventDefault();
     }
