@@ -21,7 +21,7 @@ function getRatingWidth(rating: number): string {
   return `${((Math.round(rating) / 5) * 100)}%`;
 }
 
-const convertDate = (str: string): ConvertDate => {
+const getConvertDate = (str: string): ConvertDate => {
   const date = new Date(str);
   const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
   const fullDate = str.slice(0, 10);
@@ -29,4 +29,4 @@ const convertDate = (str: string): ConvertDate => {
   return {monthYear, fullDate};
 };
 
-export {getFavoritesByLocation, getRatingWidth, convertDate};
+export {getFavoritesByLocation, getRatingWidth, getConvertDate};

@@ -1,13 +1,17 @@
-import {convertDate, getRatingWidth} from '@/utils';
+import {getRatingWidth, getConvertDate} from '@/utils';
 import {Review} from '@/types/reviews';
 import '@/components/catalog/offer-review-item/styles.css';
+import {useMemo} from 'react';
 
 type OfferReviewItemProps = {
   review: Review;
 }
 
 function OfferReviewItem({ review }: OfferReviewItemProps) {
-  const {monthYear, fullDate} = convertDate(review.date);
+  const {monthYear, fullDate} = useMemo(
+    () => getConvertDate(review.date),
+    [review.date]
+  );
 
   return (
     <li className="reviews__item">
