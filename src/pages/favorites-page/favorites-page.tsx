@@ -9,7 +9,7 @@ import {useAppSelector} from '@/hooks/store/store';
 import {favoritesSelectors} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
 import HelmetComponent from '@/components/common/helmet-component/helmet-component';
-import LoadingPage from "@/pages/loading-page/loading-page";
+import LoadingPage from '@/pages/loading-page/loading-page';
 
 export default function FavoritesPage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelectors.favorites);

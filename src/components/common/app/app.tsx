@@ -10,7 +10,7 @@ import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
-import LoadingPage from "@/pages/loading-page/loading-page";
+import LoadingPage from '@/pages/loading-page/loading-page';
 
 export default function App(): JSX.Element {
   const { fetchOffers } = useActionCreators(offersActions);
