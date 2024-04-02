@@ -13,11 +13,11 @@ import {useEffect} from 'react';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 import {RequestStatus} from '@/utils/const';
-import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offerActions, offerSelectors} from '@/store/slices/offer';
 import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
+import LoadingPage from "@/pages/loading-page/loading-page";
 
 export default function OfferPage(): JSX.Element {
   const offer = useAppSelector(offerSelectors.offer);
@@ -81,6 +81,6 @@ export default function OfferPage(): JSX.Element {
       </Container>
     );
   } else {
-    return <LoadingScreen/>;
+    return <LoadingPage/>;
   }
 }

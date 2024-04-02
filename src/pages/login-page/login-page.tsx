@@ -4,7 +4,7 @@ import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
 import LoginForm from '@/components/common/login-form/login-form';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
 import {getRandomCity} from '@/pages/login-page/utils';
 import {CityShot} from '@/types/city';
 

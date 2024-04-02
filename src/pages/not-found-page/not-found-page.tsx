@@ -4,7 +4,7 @@ import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
 import Header from '@/components/common/header/header';
 import Footer from '@/components/common/footer/footer';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
 
 const VARIANTS = {
   page: {text: 'Page'},

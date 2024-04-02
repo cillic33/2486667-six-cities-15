@@ -8,8 +8,8 @@ import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favori
 import {useAppSelector} from '@/hooks/store/store';
 import {favoritesSelectors} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
-import LoadingScreen from '@/pages/loading-screen/loading-screen';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
+import LoadingPage from "@/pages/loading-page/loading-page";
 
 export default function FavoritesPage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelectors.favorites);
@@ -17,7 +17,7 @@ export default function FavoritesPage(): JSX.Element {
   const favoritesByLocation = getFavoritesByLocation(favorites);
 
   if (favoritesRequestStatus === RequestStatus.Loading) {
-    return <LoadingScreen />;
+    return <LoadingPage />;
   }
 
   return (

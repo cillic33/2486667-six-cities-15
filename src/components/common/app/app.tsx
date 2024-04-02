@@ -7,10 +7,10 @@ import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
-import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
+import LoadingPage from "@/pages/loading-page/loading-page";
 
 export default function App(): JSX.Element {
   const { fetchOffers } = useActionCreators(offersActions);
@@ -26,7 +26,7 @@ export default function App(): JSX.Element {
 
   if (authorizationStatus === AuthorizationStatus.Unknown || offersRequestStatus === RequestStatus.Loading) {
     return (
-      <LoadingScreen />
+      <LoadingPage />
     );
   }
 
