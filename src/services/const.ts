@@ -7,6 +7,6 @@ const StatusCodeMapping: Record<number, boolean> = {
 };
 
 const NOT_LOGGED = 'You are not logged in';
-const AUTH_ERROR = 'Invalid username or password';
+const AUTHORIZATION_ERROR = 'Invalid username or password';
 
-export {StatusCodeMapping, NOT_LOGGED, AUTH_ERROR};
+export {StatusCodeMapping, NOT_LOGGED, AUTHORIZATION_ERROR};
