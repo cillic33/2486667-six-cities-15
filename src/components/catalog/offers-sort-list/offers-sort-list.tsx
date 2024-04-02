@@ -1,7 +1,7 @@
-import {SORT_OPTIONS, SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {clsx} from 'clsx';
 import {useActionCreators} from '@/hooks/store/store';
 import {offersActions} from '@/store/slices/offers';
+import {SORT_OPTIONS, SortOption} from "@/types/sort";
 
 type OffersSortListProps = {
   sortOption: SortOption;

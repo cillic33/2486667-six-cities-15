@@ -6,9 +6,9 @@ import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {City} from '@/types/city';
 import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
-import {getPageTitle, getSortedOffers} from '@/components/catalog/offers-list/utils';
 import {offersSelectors} from '@/store/slices/offers';
 import {useLocation} from 'react-router-dom';
+import {getPageTitle, getSortedOffers} from "@/components/catalog/offers-list/utils";
 
 type OffersListProps = {
   offers: Offer[];

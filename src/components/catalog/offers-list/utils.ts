@@ -1,5 +1,5 @@
-import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {Offer} from '@/types/offer';
+import {SortOption} from "@/types/sort";
 
 export const getSortedOffers = (sortOption: SortOption, offers: Offer[]): Offer[] => {
   let sortedOffers = [];
