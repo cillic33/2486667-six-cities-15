@@ -1,6 +1,7 @@
 import {clsx} from 'clsx';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
+import {memo} from "react";
 
 type FooterProps = {
   extraClass?: string;
@@ -16,4 +17,5 @@ function Footer({ extraClass }: FooterProps): JSX.Element {
   );
 }
 
-export default Footer;
+const MemoFooter = memo(Footer);
+export default MemoFooter;

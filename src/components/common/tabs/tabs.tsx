@@ -2,7 +2,7 @@ import {NavLink, useLocation} from 'react-router-dom';
 import {City} from '@/types/city';
 import {clsx} from 'clsx';
 import {useActionCreators} from '@/hooks/store/store';
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {DEFAULT_CITY} from '@/utils/const';
 import {offersActions} from '@/store/slices/offers';
 
@@ -50,4 +50,5 @@ function Tabs({ cities }: TabsProps): JSX.Element {
   );
 }
 
-export default Tabs;
+const MemoTabs = memo(Tabs);
+export default MemoTabs;

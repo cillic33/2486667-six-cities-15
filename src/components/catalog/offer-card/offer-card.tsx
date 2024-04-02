@@ -5,6 +5,7 @@ import {clsx} from 'clsx';
 import {getRatingWidth} from '@/utils';
 import {OfferPreview} from '@/types/offer-preview';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
+import {memo} from "react";
 
 type CardProps = {
   offer: Offer | OfferPreview;
@@ -67,4 +68,5 @@ function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
   );
 }
 
-export default OfferCard;
+const MemoOfferCard = memo(OfferCard);
+export default MemoOfferCard;
