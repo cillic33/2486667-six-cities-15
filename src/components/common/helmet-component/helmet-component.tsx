@@ -1,4 +1,5 @@
 import {Helmet} from 'react-helmet-async';
+import {memo} from 'react';
 
 type HelmetComponentProps = {
   title: string;
@@ -7,7 +8,7 @@ type HelmetComponentProps = {
   type?: string;
 }
 
-export default function HelmetComponent({ title, description, name, type }: HelmetComponentProps) {
+function HelmetComponent({ title, description, name, type }: HelmetComponentProps) {
   return (
     <Helmet>
       <title>{title}</title>
@@ -22,3 +23,6 @@ export default function HelmetComponent({ title, description, name, type }: Helm
     </Helmet>
   );
 }
+
+const MemoHelmetComponent = memo(HelmetComponent);
+export default MemoHelmetComponent;

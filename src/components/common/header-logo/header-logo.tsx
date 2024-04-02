@@ -1,9 +1,9 @@
 import {Link, useLocation} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
 import {clsx} from 'clsx';
-import {MouseEvent} from 'react';
+import {memo, MouseEvent} from 'react';
 
-export default function HeaderLogo(): JSX.Element {
+function HeaderLogo(): JSX.Element {
   const {pathname} = useLocation();
 
   const isMainPage = () => pathname === '/';
@@ -24,3 +24,6 @@ export default function HeaderLogo(): JSX.Element {
     </Link>
   );
 }
+
+const MemoHeaderLogo = memo(HeaderLogo);
+export default MemoHeaderLogo;

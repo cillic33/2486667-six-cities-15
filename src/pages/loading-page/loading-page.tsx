@@ -1,4 +1,4 @@
-import {CSSProperties} from 'react';
+import {CSSProperties, memo} from 'react';
 import {BeatLoader} from 'react-spinners';
 
 function LoadingPage(): JSX.Element {
@@ -18,4 +18,6 @@ function LoadingPage(): JSX.Element {
   );
 }
 
-export default LoadingPage;
+const MemoLoadingPage = memo(LoadingPage);
+
+export default MemoLoadingPage;
