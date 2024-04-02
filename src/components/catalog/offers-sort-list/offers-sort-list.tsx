@@ -1,7 +1,7 @@
-import {SORT_OPTIONS, SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {clsx} from 'clsx';
 import {useActionCreators} from '@/hooks/store/store';
 import {offersActions} from '@/store/slices/offers';
+import {SORT_OPTIONS, SortOption} from '@/types/sort';
 
 type OffersSortListProps = {
   sortOption: SortOption;
@@ -9,10 +9,10 @@ type OffersSortListProps = {
   off: () => void;
 }
 
-export default function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
+function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
   const {setSortOption} = useActionCreators(offersActions);
 
-  const clickOptionHandler = (option: SortOption): void => {
+  const handleOptionClick = (option: SortOption): void => {
     off();
     setSortOption(option);
   };
@@ -33,7 +33,7 @@ export default function OffersSortList({sortOption, isOn, off}: OffersSortListPr
             'places__option',
             sortOption === option.id && 'places__option--active',
           )}
-          onClick={() => clickOptionHandler(option.id)}
+          onClick={() => handleOptionClick(option.id)}
         >
           {option.name}
         </li>
@@ -41,3 +41,5 @@ export default function OffersSortList({sortOption, isOn, off}: OffersSortListPr
     </ul>
   );
 }
+
+export default OffersSortList;

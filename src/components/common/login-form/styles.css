@@ -1,0 +1,6 @@
+.login__form-fieldset {
+  border: none;
+}
+.login__form-fieldset[disabled] .login__submit {
+  cursor: default;
+}

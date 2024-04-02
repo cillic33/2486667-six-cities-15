@@ -1,12 +1,17 @@
-import {convertDate, getRatingWidth} from '@/utils';
+import {getRatingWidth, getConvertDate} from '@/utils';
 import {Review} from '@/types/reviews';
+import '@/components/catalog/offer-review-item/styles.css';
+import {useMemo} from 'react';
 
 type OfferReviewItemProps = {
   review: Review;
 }
 
-export default function OfferReviewItem({ review }: OfferReviewItemProps) {
-  const {monthYear, fullDate} = convertDate(review.date);
+function OfferReviewItem({ review }: OfferReviewItemProps) {
+  const {monthYear, fullDate} = useMemo(
+    () => getConvertDate(review.date),
+    [review.date]
+  );
 
   return (
     <li className="reviews__item">
@@ -25,7 +30,7 @@ export default function OfferReviewItem({ review }: OfferReviewItemProps) {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <p className="reviews__text" style={{wordBreak: 'break-all'}}>
+        <p className="reviews__text reviews__text_word-break">
           {review.comment}
         </p>
         <time className="reviews__time" dateTime={fullDate}>{monthYear}</time>
@@ -33,3 +38,5 @@ export default function OfferReviewItem({ review }: OfferReviewItemProps) {
     </li>
   );
 }
+
+export default OfferReviewItem;

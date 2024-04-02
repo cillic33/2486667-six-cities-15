@@ -1,33 +1,33 @@
 import {Offer} from '@/types/offer';
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffer} from '@/store/thunks/offer';
 
 interface OfferState {
   offer: Offer | null;
-  status: RequestStatus;
+  requestStatus: RequestStatus;
 }
 
 const initialState: OfferState = {
   offer: null,
-  status: RequestStatus.Idle,
+  requestStatus: RequestStatus.Idle,
 };
 
 const offerSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchOffer.pending, (state: OfferState) => {
-        state.status = RequestStatus.Loading;
+        state.requestStatus = RequestStatus.Loading;
       })
       .addCase(fetchOffer.fulfilled, (state: OfferState, action) => {
-        state.status = RequestStatus.Success;
+        state.requestStatus = RequestStatus.Success;
         state.offer = action.payload;
       })
       .addCase(fetchOffer.rejected, (state: OfferState) => {
-        state.status = RequestStatus.Failed;
+        state.requestStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'offer',
+  name: NameSpace.Offer,
   reducers: {
     clear(state: OfferState) {
       state.offer = null;
@@ -35,7 +35,7 @@ const offerSlice = createSlice({
   },
   selectors: {
     offer: (state: OfferState) => state.offer,
-    status: (state: OfferState) => state.status,
+    requestStatus: (state: OfferState) => state.requestStatus,
   },
 });
 

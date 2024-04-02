@@ -1,57 +1,67 @@
-import {FormEvent, useRef} from 'react';
-import {useActionCreators} from '@/hooks/store/store';
-import {AuthData} from '@/types/user';
-import {usersActions} from '@/store/slices/users';
+import {ChangeEvent, FormEvent, useState} from 'react';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
+import {usersActions, usersSelectors} from '@/store/slices/users';
+import {RequestStatus} from '@/utils/const';
+import '@/components/common/login-form/styles.css';
+import {PASSWORD_NOTE, PASSWORD_PATTERN} from '@/components/common/login-form/const';
+import {AuthorizationData} from '@/types/user';
 
-export default function LoginForm() {
+function LoginForm() {
   const { loginUser } = useActionCreators(usersActions);
-  const login = useRef<HTMLInputElement | null>(null);
-  const password = useRef<HTMLInputElement | null>(null);
+  const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
+  const [formData, setFormData] = useState<AuthorizationData>({
+    login: '',
+    password: '',
+  });
 
-  const formSubmitHandle = (event: FormEvent<HTMLFormElement>) => {
+  const handleFieldsChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({...formData, [event.target.name]: event.target.value});
+  };
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (login.current !== null && password.current !== null) {
-      const authData: AuthData = {
-        login: login.current?.value || '',
-        password: password.current?.value || '',
-      };
-      loginUser(authData);
-    }
+    loginUser(formData);
   };
 
   return (
     <form className="login__form form"
       action=""
       method="post"
-      onSubmit={formSubmitHandle}
+      onSubmit={handleFormSubmit}
     >
-      <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">E-mail</label>
-        <input
-          className="login__input form__input"
-          type="email"
-          name="login"
-          placeholder="Email"
-          required
-          //value="Oliver.conner@gmail.com"
-          ref={login}
-        />
-      </div>
-      <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">Password</label>
-        <input
-          className="login__input form__input"
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-          autoComplete="on"
-          //value="password1"
-          ref={password}
-        />
-      </div>
-      <button className="login__submit form__submit button" type="submit">Sign in</button>
+      <fieldset className="login__form-fieldset" disabled={requestUsersStatus === RequestStatus.Loading}>
+        <div className="login__input-wrapper form__input-wrapper">
+          <label className="visually-hidden">E-mail</label>
+          <input
+            className="login__input form__input"
+            type="email"
+            name="login"
+            placeholder="Email"
+            required
+            value={formData.login}
+            onChange={handleFieldsChange}
+          />
+        </div>
+        <div className="login__input-wrapper form__input-wrapper">
+          <label className="visually-hidden">Password</label>
+          <input
+            className="login__input form__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            autoComplete="on"
+            pattern={PASSWORD_PATTERN}
+            title={PASSWORD_NOTE}
+            value={formData.password}
+            onChange={handleFieldsChange}
+          />
+        </div>
+        <button className="login__submit form__submit button" type="submit">Sign in</button>
+      </fieldset>
     </form>
   );
 }
+export default LoginForm;
+

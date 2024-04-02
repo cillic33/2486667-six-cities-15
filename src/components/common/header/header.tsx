@@ -4,8 +4,9 @@ import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 import HeaderAuth from '@/components/common/header/header-auth';
 import HeaderNoAuth from '@/components/common/header/header-no-auth';
+import {memo} from 'react';
 
-export default function Header(): JSX.Element {
+function Header(): JSX.Element {
   const isAuth = useAuth();
   const {pathname} = useLocation();
 
@@ -20,7 +21,7 @@ export default function Header(): JSX.Element {
             <ul className="header__nav-list">
               {isAuth &&
                 <HeaderAuth />}
-              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) && // TODO
+              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) &&
                 <HeaderNoAuth />}
             </ul>
           </nav>
@@ -29,3 +30,6 @@ export default function Header(): JSX.Element {
     </header>
   );
 }
+
+const MemoHeader = memo(Header);
+export default MemoHeader;

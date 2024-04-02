@@ -7,7 +7,7 @@ import Tabs from '@/components/common/tabs/tabs';
 import {City} from '@/types/city';
 import {useAppSelector} from '@/hooks/store/store';
 import {offersSelectors} from '@/store/slices/offers';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
 
 type MainPageProps = {
   cities: City[];

@@ -1,17 +1,17 @@
-import {AuthStatus, RequestStatus} from '@/utils/const';
+import {AuthorizationStatus, NameSpace, RequestStatus} from '@/utils/const';
 import {UserData} from '@/types/user';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
 
 interface UsersState {
   user: UserData | null;
-  authorizationStatus: AuthStatus;
+  authorizationStatus: AuthorizationStatus;
   requestStatus: RequestStatus;
 }
 
 const initialState: UsersState = {
   user: null,
-  authorizationStatus: AuthStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Unknown,
   requestStatus: RequestStatus.Idle,
 };
 
@@ -21,12 +21,12 @@ function processLoading(state: UsersState) {
 
 function processFulfilled(state: UsersState, action: PayloadAction<UserData>) {
   state.user = action.payload;
-  state.authorizationStatus = AuthStatus.Auth;
+  state.authorizationStatus = AuthorizationStatus.Authorized;
   state.requestStatus = RequestStatus.Success;
 }
 
 function processFailed(state: UsersState) {
-  state.authorizationStatus = AuthStatus.NoAuth;
+  state.authorizationStatus = AuthorizationStatus.NoAuthorized;
   state.requestStatus = RequestStatus.Failed;
 }
 
@@ -44,25 +44,26 @@ const usersSlice = createSlice({
       .addCase(logoutUser.pending, processLoading)
       .addCase(logoutUser.fulfilled, (state: UsersState) => {
         state.user = null;
-        state.authorizationStatus = AuthStatus.NoAuth;
+        state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(logoutUser.rejected, (state: UsersState) => {
         state.requestStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'users',
+  name: NameSpace.Users,
   reducers: {
     setUser: (state, action: PayloadAction<UserData | null>) => {
       state.user = action.payload;
     },
-    requireAuth: (state, action: PayloadAction<AuthStatus>) => {
+    requireAuth: (state, action: PayloadAction<AuthorizationStatus>) => {
       state.authorizationStatus = action.payload;
     },
   },
   selectors: {
     user: (state: UsersState) => state.user,
     authorizationStatus: (state: UsersState) => state.authorizationStatus,
+    requestStatus: (state: UsersState) => state.requestStatus,
   },
 });
 

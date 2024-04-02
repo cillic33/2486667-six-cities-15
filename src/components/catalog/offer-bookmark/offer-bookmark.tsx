@@ -1,10 +1,13 @@
 import {clsx} from 'clsx';
-import {useState} from 'react';
-import {useActionCreators} from '@/hooks/store/store';
+import {MouseEvent, useState} from 'react';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
-import {favoritesActions} from '@/store/slices/favorites';
+import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
 import {offersActions} from '@/store/slices/offers';
-import {MouseEvent} from 'react';
+import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
+import {useNavigate} from 'react-router-dom';
+import {AppRoute, RequestStatus} from '@/utils/const';
+import '@/components/catalog/offer-bookmark/styles.css';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -12,21 +15,31 @@ type OfferBookmarkProps = {
   block: string;
 }
 
-export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
+function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
   const { changeFavorite } = useActionCreators(favoritesActions);
   const { updateFavoriteStatus } = useActionCreators(offersActions);
+  const changeFavoriteStatus = useAppSelector(favoritesSelectors.changeStatus);
+  const isAuth = useAuth();
+  const navigate = useNavigate();
 
-  const clickBookmarkHandle = (event: MouseEvent<HTMLButtonElement>): void => {
+  const handleBookmarkClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    setCurrentIsFavorite(!currentIsFavorite);
 
-    const changeFavoriteArgs: ChangeFavoriteArgs = {
-      offerId,
-      status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
-    };
-    changeFavorite(changeFavoriteArgs);
-    updateFavoriteStatus(changeFavoriteArgs); // TODO сделать это в случае успеха изменения статуса
+    if (isAuth) {
+      setCurrentIsFavorite(!currentIsFavorite);
+
+      const changeFavoriteArgs: ChangeFavoriteArgs = {
+        offerId,
+        status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
+      };
+
+      changeFavorite(changeFavoriteArgs).then(() => {
+        updateFavoriteStatus(changeFavoriteArgs);
+      });
+    } else {
+      navigate(AppRoute.Login);
+    }
   };
 
   return (
@@ -34,10 +47,11 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       className={clsx(
         `${block}__bookmark-button`,
         'button',
-        currentIsFavorite && `${block}__bookmark-button--active`
+        isAuth && currentIsFavorite && `${block}__bookmark-button--active`
       )}
       type="button"
-      onClick={clickBookmarkHandle}
+      onClick={handleBookmarkClick}
+      disabled={changeFavoriteStatus === RequestStatus.Loading}
     >
       <svg
         className={`${block}__bookmark-icon`}
@@ -47,8 +61,10 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">
-        {currentIsFavorite ? 'In bookmarks' : 'To bookmarks'}
+        {isAuth && currentIsFavorite ? 'In bookmarks' : 'To bookmarks'}
       </span>
     </button>
   );
 }
+
+export default OfferBookmark;

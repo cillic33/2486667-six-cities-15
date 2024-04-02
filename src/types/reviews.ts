@@ -1,4 +1,5 @@
 import {User} from '@/types/user';
+import {ReactEventHandler} from 'react';
 
 export type Review = {
   id: string;
@@ -8,8 +9,10 @@ export type Review = {
   user: User;
 }
 
-export type PostReviewArg = {
+export type PostReviewBody = {
   offerId: string;
   comment: string;
   rating: number;
 }
+
+export type HandleFieldChange = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;

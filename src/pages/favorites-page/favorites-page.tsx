@@ -1,4 +1,3 @@
-import {City} from '@/types/city';
 import {getFavoritesByLocation} from '@/utils';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
@@ -9,20 +8,16 @@ import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favori
 import {useAppSelector} from '@/hooks/store/store';
 import {favoritesSelectors} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
-import LoadingScreen from '@/pages/loading-screen/loading-screen';
-import HelmetComponent from '@/components/common/helmet-component/helmet';
+import HelmetComponent from '@/components/common/helmet-component/helmet-component';
+import LoadingPage from '@/pages/loading-page/loading-page';
 
-type FavoritesPagePops = {
-  cities: City[];
-}
-
-export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelectors.favorites);
-  const status = useAppSelector(favoritesSelectors.status);
+  const favoritesRequestStatus = useAppSelector(favoritesSelectors.requestStatus);
   const favoritesByLocation = getFavoritesByLocation(favorites);
 
-  if (status === RequestStatus.Loading) {
-    return <LoadingScreen />;
+  if (favoritesRequestStatus === RequestStatus.Loading) {
+    return <LoadingPage />;
   }
 
   return (
@@ -32,7 +27,7 @@ export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Elemen
       <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">
           {favorites.length ?
-            <FavoritesList favorites={favoritesByLocation} cities={cities} /> :
+            <FavoritesList favorites={favoritesByLocation} /> :
             <FavoritesListEmpty />}
         </div>
       </MainContainer>

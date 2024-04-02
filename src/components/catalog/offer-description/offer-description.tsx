@@ -1,13 +1,14 @@
 import {Offer} from '@/types/offer';
 import {getRatingWidth} from '@/utils';
-import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
-import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/utils/const';
+import OfferBookmark from '@/components/catalog/offer-bookmark';
+import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/const';
+import {memo} from 'react';
 
 type OfferDescriptionProps = {
   offer: Offer;
 }
 
-export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.Element {
+function OfferDescription({ offer }: OfferDescriptionProps):JSX.Element {
   return (
     <>
       {offer.isPremium &&
@@ -75,3 +76,6 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
     </>
   );
 }
+
+const MemoOfferDescription = memo(OfferDescription);
+export default MemoOfferDescription;

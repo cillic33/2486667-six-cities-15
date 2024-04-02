@@ -1,15 +1,13 @@
-.showBtn,
-.hideBtn {
+.reviews__list__show-more-btn {
   color: #4481c3;
-  font-weight: 500;
+  font-weight: 400;
   display: inline-block;
   padding: 0 20px 40px;
   position: relative;
   left: 280px;
 }
 
-.showBtn:hover,
-.hideBtn:hover {
+.reviews__list__show-more-btn:hover {
   text-decoration: underline;
 }
 

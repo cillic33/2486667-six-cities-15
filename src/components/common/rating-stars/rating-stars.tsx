@@ -1,14 +1,14 @@
 import {RATING} from './const';
-import {Fragment, ReactEventHandler} from 'react';
-
-type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+import {Fragment} from 'react';
+import '@/components/common/rating-stars/styles.css';
+import {HandleFieldChange} from '@/types/reviews';
 
 type RatingStarsProps = {
-  fieldChangeHandler: TFieldChangeHandler;
+  handleFieldChange: HandleFieldChange;
   rating: number;
 }
 
-export default function RatingStars({ fieldChangeHandler, rating }: RatingStarsProps) {
+function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
   return (
     <>
       {RATING.map(({value, title}) => (
@@ -18,7 +18,7 @@ export default function RatingStars({ fieldChangeHandler, rating }: RatingStarsP
             id={`${value}-stars`}
             type="radio"
             value={value}
-            onChange={fieldChangeHandler}
+            onChange={handleFieldChange}
             checked={Number(rating) === Number(value) && Number(rating) !== 0}
           />
           <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
@@ -31,3 +31,5 @@ export default function RatingStars({ fieldChangeHandler, rating }: RatingStarsP
     </>
   );
 }
+
+export default RatingStars;

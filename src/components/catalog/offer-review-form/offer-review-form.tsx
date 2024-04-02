@@ -1,41 +1,42 @@
-import {FormEvent, ReactEventHandler, useState} from 'react';
+import {FormEvent, useState} from 'react';
 import RatingStars from '@/components/common/rating-stars/rating-stars';
-import {PostReviewArg} from '@/types/reviews';
+import {HandleFieldChange, PostReviewBody} from '@/types/reviews';
 import {useParams} from 'react-router-dom';
-import {useActionCreators} from '@/hooks/store/store';
-import {reviewsActions} from '@/store/slices/reviews';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
+import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
-
-type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+import {RequestStatus} from '@/utils/const';
+import '@/components/catalog/offer-review-form/styles.css';
 
 type OfferReviewFormProps = {
   scrollToTitle: () => void;
 }
 
-export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
+function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
   const { id } = useParams();
-  const [formData, setFormData] = useState<Omit<PostReviewArg, 'offerId'>>({
+  const [formData, setFormData] = useState<Omit<PostReviewBody, 'offerId'>>({
     comment: '',
     rating: 0,
   });
   const { postReview } = useActionCreators(reviewsActions);
+  const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
 
-  const fieldChangeHandler: TFieldChangeHandler = (event) => {
+  const handleFieldChange: HandleFieldChange = (event) => {
     const { name, value } = event.currentTarget;
     setFormData({...formData, [name]: value});
   };
 
-  const submitHandler = (event: FormEvent) => {
+  const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    const postReviewArg: PostReviewArg = {
+    const postReviewBody: PostReviewBody = {
       offerId: id as string,
       comment: formData.comment,
       rating: Number(formData.rating),
     };
 
-    postReview(postReviewArg).then(() => {
+    postReview(postReviewBody).then(() => {
       toast.info(SUBMIT_SUCCESS_MESSAGE);
       setFormData({
         comment: '',
@@ -47,35 +48,40 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating">
-        <RatingStars fieldChangeHandler={fieldChangeHandler} rating={formData.rating} />
-      </div>
+      <fieldset className="reviews__fieldset" disabled={postReviewStatus === RequestStatus.Loading}>
+        <label className="reviews__label form__label" htmlFor="review">Your review</label>
+        <div className="reviews__rating-form form__rating">
+          <RatingStars handleFieldChange={handleFieldChange} rating={formData.rating} />
+        </div>
 
-      <textarea
-        className="reviews__textarea form__textarea"
-        id="comment"
-        name="comment"
-        placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={fieldChangeHandler}
-        value={formData.comment}
-      >
-      </textarea>
-
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-          your stay with at least <b className="reviews__text-amount">50 characters</b>.
-        </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled={(formData.rating) === 0 || (formData.comment).length < 50}
-          onClick={submitHandler}
+        <textarea
+          className="reviews__textarea form__textarea"
+          id="comment"
+          name="comment"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          onChange={handleFieldChange}
+          value={formData.comment}
+          maxLength={300}
         >
-          Submit
-        </button>
-      </div>
+        </textarea>
+
+        <div className="reviews__button-wrapper">
+          <p className="reviews__help">
+            To submit review please make sure to set <span className="reviews__star">rating</span> and describe
+            your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          </p>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled={(formData.rating) === 0 || (formData.comment).length < 50}
+            onClick={handleFormSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      </fieldset>
     </form>
   );
 }
+
+export default OfferReviewForm;

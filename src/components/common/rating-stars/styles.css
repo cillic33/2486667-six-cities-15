@@ -1,0 +1,10 @@
+.reviews__fieldset[disabled] .form__rating-input:checked~.form__rating-label .form__star-image,
+.reviews__fieldset[disabled] .form__rating-input:focus~.form__rating-label .form__star-image,
+.reviews__fieldset[disabled] .form__rating-label:hover .form__star-image,
+.reviews__fieldset[disabled] .form__rating-label:hover~.form__rating-label .form__star-image {
+  fill: #c7c7c7;
+}
+
+.reviews__fieldset[disabled] .form__rating-label {
+  cursor: default;
+}

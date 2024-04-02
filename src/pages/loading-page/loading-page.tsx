@@ -1,7 +1,7 @@
-import {CSSProperties} from 'react';
+import {CSSProperties, memo} from 'react';
 import {BeatLoader} from 'react-spinners';
 
-export default function LoadingScreen(): JSX.Element {
+function LoadingPage(): JSX.Element {
   const loaderCSS: CSSProperties = {
     margin: 'calc(50vh - 80px / 2 - 20px) auto',
     width: '72px',
@@ -17,3 +17,7 @@ export default function LoadingScreen(): JSX.Element {
     />
   );
 }
+
+const MemoLoadingPage = memo(LoadingPage);
+
+export default MemoLoadingPage;

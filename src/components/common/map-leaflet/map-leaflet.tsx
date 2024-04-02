@@ -14,7 +14,7 @@ type MapLeafletProps = {
   extraClass: string;
 }
 
-export default function MapLeaflet({ currentCity, points, activePoint, extraClass }: MapLeafletProps) {
+function MapLeaflet({ currentCity, points, activePoint, extraClass }: MapLeafletProps) {
   const mapRef = useRef(null) as RefObject<HTMLFormElement> | null;
   // Создание инстанса карты и добавления на нее слоя изображения карты
   const map = useMapLeaflet(mapRef, currentCity);
@@ -31,3 +31,5 @@ export default function MapLeaflet({ currentCity, points, activePoint, extraClas
     </section>
   );
 }
+
+export default MapLeaflet;

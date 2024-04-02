@@ -1,6 +1,5 @@
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate, useLocation, Location} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
-import {Location} from 'react-router-dom';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 
 type ProtectedRouteProps = {
@@ -12,7 +11,7 @@ type FromState = {
   from?: Location;
 }
 
-export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
+function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
   const isAuth = useAuth();
 
@@ -30,3 +29,5 @@ export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteP
 
   return children;
 }
+
+export default ProtectedRoute;

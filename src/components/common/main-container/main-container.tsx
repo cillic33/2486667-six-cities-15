@@ -6,10 +6,12 @@ type ContainerProps = {
   extraClass?: string;
 }
 
-export default function MainContainer({ children, extraClass }: ContainerProps): JSX.Element {
+function MainContainer({ children, extraClass }: ContainerProps): JSX.Element {
   return (
     <main className={clsx('page__main', extraClass ? extraClass : '')}>
       {children}
     </main>
   );
 }
+
+export default MainContainer;

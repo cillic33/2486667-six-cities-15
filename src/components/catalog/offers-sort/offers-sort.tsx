@@ -1,15 +1,15 @@
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {useAppSelector} from '@/hooks/store/store';
-import {SORT_OPTIONS} from '@/components/catalog/offers-sort/utils/const';
-import {useBoolean} from '@/hooks/boolean/boolean';
 import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
 import {offersSelectors} from '@/store/slices/offers';
+import {SORT_OPTIONS} from '@/types/sort';
+import {useBoolean} from '@/hooks/use-boolean/use-boolean';
 
-export default function OffersSort() {
+function OffersSort() {
   const {isOn, off, toggle} = useBoolean(false);
   const sortOption = useAppSelector(offersSelectors.sortOption);
 
-  const clickCaptionHandler = (): void => {
+  const handleCaptionClick = (): void => {
     toggle();
   };
 
@@ -35,7 +35,7 @@ export default function OffersSort() {
       <span
         className="places__sorting-type"
         tabIndex={0}
-        onClick={clickCaptionHandler}
+        onClick={handleCaptionClick}
         style={{outline: 'none'}}
       >
         &nbsp;
@@ -49,3 +49,6 @@ export default function OffersSort() {
     </form>
   );
 }
+
+const MemoOffersSort = memo(OffersSort);
+export default MemoOffersSort;

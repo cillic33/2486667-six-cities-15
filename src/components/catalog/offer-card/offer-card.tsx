@@ -3,16 +3,22 @@ import {Offer} from '@/types/offer';
 import {AppRoute} from '@/utils/const';
 import {clsx} from 'clsx';
 import {getRatingWidth} from '@/utils';
-import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
 import {OfferPreview} from '@/types/offer-preview';
+import OfferBookmark from '@/components/catalog/offer-bookmark';
+import {memo, useMemo} from 'react';
 
 type CardProps = {
   offer: Offer | OfferPreview;
   block: string;
-  hoverHandler?: (id: Offer['id'] | null) => void;
+  onCardHover?: (id: Offer['id'] | null) => void;
 }
 
-export default function OfferCard({ offer, block, hoverHandler }: CardProps): JSX.Element {
+function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
+  const offerRatingWidth = useMemo(
+    () => getRatingWidth(offer.rating),
+    [offer.rating]
+  );
+
   return (
     <Link
       to={`${AppRoute.Offer}/${offer.id}`}
@@ -20,13 +26,13 @@ export default function OfferCard({ offer, block, hoverHandler }: CardProps): JS
     >
       <article
         onMouseEnter={() => {
-          if (hoverHandler) {
-            hoverHandler(offer.id);
+          if (onCardHover) {
+            onCardHover(offer.id);
           }
         }}
         onMouseLeave={() => {
-          if (hoverHandler) {
-            hoverHandler(null);
+          if (onCardHover) {
+            onCardHover(null);
           }
         }}
       >
@@ -53,7 +59,7 @@ export default function OfferCard({ offer, block, hoverHandler }: CardProps): JS
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: getRatingWidth(offer.rating)}}></span>
+              <span style={{width: offerRatingWidth}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
@@ -66,3 +72,6 @@ export default function OfferCard({ offer, block, hoverHandler }: CardProps): JS
     </Link>
   );
 }
+
+const MemoOfferCard = memo(OfferCard);
+export default MemoOfferCard;

@@ -1,40 +1,40 @@
 import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
-import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
+import {DEFAULT_CITY, NameSpace, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {fetchOffers} from '@/store/thunks/offers';
 import {ChangeFavoriteArgs} from '@/types/favorites';
+import {SortOption} from '@/types/sort';
 
 interface OffersState {
   offers: Offer[];
   city: City;
   sortOption: SortOption;
-  status: RequestStatus;
+  requestStatus: RequestStatus;
 }
 
 const initialState: OffersState = {
   offers: [],
   city: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
-  status: RequestStatus.Idle,
+  requestStatus: RequestStatus.Idle,
 };
 
 const offersSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchOffers.pending, (state: OffersState) => {
-        state.status = RequestStatus.Loading;
+        state.requestStatus = RequestStatus.Loading;
       })
       .addCase(fetchOffers.fulfilled, (state: OffersState, action) => {
-        state.status = RequestStatus.Success;
+        state.requestStatus = RequestStatus.Success;
         state.offers = action.payload;
       })
       .addCase(fetchOffers.rejected, (state: OffersState) => {
-        state.status = RequestStatus.Failed;
+        state.requestStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'offers',
+  name: NameSpace.Offers,
   reducers: {
     setCity: (state, action: PayloadAction<City>) => {
       state.city = action.payload;
@@ -58,7 +58,7 @@ const offersSlice = createSlice({
     offers: (state: OffersState) => state.offers,
     city: (state: OffersState) => state.city,
     sortOption: (state: OffersState) => state.sortOption,
-    status: (state) => state.status,
+    requestStatus: (state) => state.requestStatus,
   },
 });
 

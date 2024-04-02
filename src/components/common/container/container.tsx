@@ -6,10 +6,12 @@ type ExtraContainerProps = {
   extraClass?: string;
 }
 
-export default function Container({ children, extraClass }: ExtraContainerProps): JSX.Element {
+function Container({ children, extraClass }: ExtraContainerProps): JSX.Element {
   return (
     <div className={clsx('page', extraClass ? extraClass : '')}>
       {children}
     </div>
   );
 }
+
+export default Container;

@@ -4,15 +4,15 @@ import {useEffect} from 'react';
 import {RequestStatus} from '@/utils/const';
 
 export function useFavoriteCount() {
-  const status = useAppSelector(favoritesSelectors.status);
+  const favoritesRequestStatus = useAppSelector(favoritesSelectors.requestStatus);
   const count = useAppSelector(favoritesSelectors.favorites).length;
   const { fetchFavorites } = useActionCreators(favoritesActions);
 
   useEffect(() => {
-    if (status === RequestStatus.Idle) {
+    if (favoritesRequestStatus === RequestStatus.Idle) {
       fetchFavorites();
     }
-  }, [fetchFavorites, status]);
+  }, [fetchFavorites, favoritesRequestStatus]);
 
   return count;
 }

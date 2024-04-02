@@ -1,17 +1,17 @@
-import {RequestStatus} from '@/utils/const';
+import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {Review} from '@/types/reviews';
 import {fetchReviews, postReview} from '@/store/thunks/reviews';
 
 interface ReviewsState {
   reviews: Review[];
-  getStatus: RequestStatus;
+  requestStatus: RequestStatus;
   postStatus: RequestStatus;
 }
 
 const initialState: ReviewsState = {
   reviews: [],
-  getStatus: RequestStatus.Idle,
+  requestStatus: RequestStatus.Idle,
   postStatus: RequestStatus.Idle,
 };
 
@@ -19,14 +19,14 @@ const reviewsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchReviews.pending, (state: ReviewsState) => {
-        state.getStatus = RequestStatus.Loading;
+        state.requestStatus = RequestStatus.Loading;
       })
       .addCase(fetchReviews.fulfilled, (state: ReviewsState, action) => {
-        state.getStatus = RequestStatus.Success;
+        state.requestStatus = RequestStatus.Success;
         state.reviews = action.payload;
       })
       .addCase(fetchReviews.rejected, (state: ReviewsState) => {
-        state.getStatus = RequestStatus.Failed;
+        state.requestStatus = RequestStatus.Failed;
       })
 
       .addCase(postReview.pending, (state: ReviewsState) => {
@@ -40,17 +40,18 @@ const reviewsSlice = createSlice({
         state.postStatus = RequestStatus.Failed;
       }),
   initialState,
-  name: 'reviews',
+  name: NameSpace.Reviews,
   reducers: {
     clear(state: ReviewsState) {
       state.reviews = [];
-      state.getStatus = RequestStatus.Idle;
+      state.requestStatus = RequestStatus.Idle;
       state.postStatus = RequestStatus.Idle;
     },
   },
   selectors: {
     reviews: (state: ReviewsState) => state.reviews,
-    status: (state: ReviewsState) => state.getStatus,
+    requestStatus: (state: ReviewsState) => state.requestStatus,
+    postStatus: (state: ReviewsState) => state.postStatus,
   },
 });
 

@@ -2,22 +2,21 @@ import {Link} from 'react-router-dom';
 import {Favorites} from '@/types/favorites';
 import {City} from '@/types/city';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
-import {DEFAULT_CITY} from '@/utils/const';
+import {CITIES} from '@/utils/const';
 
 type FavoritesListProps = {
   favorites: Favorites;
-  cities: City[];
 }
 
-export default function FavoritesList({ favorites, cities }: FavoritesListProps): JSX.Element {
+function FavoritesList({ favorites }: FavoritesListProps): JSX.Element {
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
 
       <ul className="favorites__list">
         {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => {
-          const city = cities.find((item: City) => (item.name === cityName));
-          const cityPath = (city?.id === DEFAULT_CITY.id) ? '/' : `/${city?.id}` || '';
+          const city = CITIES.find((item: City) => (item.name === cityName));
+          const cityPath = `/${city?.id}` || '';
 
           return (
             <li key={cityName} className="favorites__locations-items">
@@ -41,3 +40,5 @@ export default function FavoritesList({ favorites, cities }: FavoritesListProps)
     </section>
   );
 }
+
+export default FavoritesList;

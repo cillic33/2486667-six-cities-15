@@ -1,5 +1,5 @@
-import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {Offer} from '@/types/offer';
+import {SortOption} from '@/types/sort';
 
 export const getSortedOffers = (sortOption: SortOption, offers: Offer[]): Offer[] => {
   let sortedOffers = [];
@@ -23,4 +23,10 @@ export const getSortedOffers = (sortOption: SortOption, offers: Offer[]): Offer[
   }
 
   return sortedOffers;
+};
+
+export const getPageTitle = (count: number, name: string): string => {
+  const postfix = count > 1 ? 's' : '';
+
+  return `${count} place${postfix} to stay in ${name}`;
 };
