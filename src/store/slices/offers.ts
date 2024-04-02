@@ -4,7 +4,7 @@ import {DEFAULT_CITY, NameSpace, RequestStatus, SORT_OPTION_DEFAULT} from '@/uti
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffers} from '@/store/thunks/offers';
 import {ChangeFavoriteArgs} from '@/types/favorites';
-import {SortOption} from "@/types/sort";
+import {SortOption} from '@/types/sort';
 
 interface OffersState {
   offers: Offer[];

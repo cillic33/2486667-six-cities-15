@@ -8,7 +8,7 @@ import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
 import {offersSelectors} from '@/store/slices/offers';
 import {useLocation} from 'react-router-dom';
-import {getPageTitle, getSortedOffers} from "@/components/catalog/offers-list/utils";
+import {getPageTitle, getSortedOffers} from '@/components/catalog/offers-list/utils';
 
 type OffersListProps = {
   offers: Offer[];

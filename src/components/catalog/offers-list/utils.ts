@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import {SortOption} from "@/types/sort";
+import {SortOption} from '@/types/sort';
 
 export const getSortedOffers = (sortOption: SortOption, offers: Offer[]): Offer[] => {
   let sortedOffers = [];

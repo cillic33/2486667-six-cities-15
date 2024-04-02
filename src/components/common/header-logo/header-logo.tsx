@@ -1,17 +1,18 @@
 import {Link, useLocation} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
 import {clsx} from 'clsx';
+import {MouseEvent} from 'react';
 
 export default function HeaderLogo(): JSX.Element {
   const {pathname} = useLocation();
 
   const isMainPage = () => pathname === '/';
 
-  const handleLogoClick = (event) => {
+  const handleLogoClick = (event: MouseEvent<HTMLLinkElement>) => {
     if (isMainPage()) {
       event.preventDefault();
     }
-  }
+  };
 
   return (
     <Link

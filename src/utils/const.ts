@@ -1,5 +1,5 @@
 import {AppRouteOnlyCities, City} from '@/types/city';
-import {SortOption} from "@/types/sort";
+import {SortOption} from '@/types/sort';
 
 export enum AppRoute {
   Root = '/',
