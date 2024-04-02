@@ -1,6 +1,6 @@
-import {FormEvent, ReactEventHandler, useState} from 'react';
+import {FormEvent, useState} from 'react';
 import RatingStars from '@/components/common/rating-stars/rating-stars';
-import {PostReviewBody} from '@/types/reviews';
+import {HandleFieldChange, PostReviewBody} from '@/types/reviews';
 import {useParams} from 'react-router-dom';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
@@ -8,8 +8,6 @@ import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
 import {RequestStatus} from '@/utils/const';
 import '@/components/catalog/offer-review-form/styles.css';
-
-type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 type OfferReviewFormProps = {
   scrollToTitle: () => void;
@@ -24,12 +22,12 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
   const { postReview } = useActionCreators(reviewsActions);
   const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
 
-  const fieldChangeHandler: TFieldChangeHandler = (event) => {
+  const handleFieldChange: HandleFieldChange = (event) => {
     const { name, value } = event.currentTarget;
     setFormData({...formData, [name]: value});
   };
 
-  const submitHandler = (event: FormEvent) => {
+  const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     const postReviewBody: PostReviewBody = {
@@ -53,7 +51,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
       <fieldset className="reviews__fieldset" disabled={postReviewStatus === RequestStatus.Loading}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
-          <RatingStars fieldChangeHandler={fieldChangeHandler} rating={formData.rating} />
+          <RatingStars handleFieldChange={handleFieldChange} rating={formData.rating} />
         </div>
 
         <textarea
@@ -61,7 +59,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
           id="comment"
           name="comment"
           placeholder="Tell how was your stay, what you like and what can be improved"
-          onChange={fieldChangeHandler}
+          onChange={handleFieldChange}
           value={formData.comment}
           maxLength={300}
         >
@@ -76,7 +74,7 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
             className="reviews__submit form__submit button"
             type="submit"
             disabled={(formData.rating) === 0 || (formData.comment).length < 50}
-            onClick={submitHandler}
+            onClick={handleFormSubmit}
           >
             Submit
           </button>

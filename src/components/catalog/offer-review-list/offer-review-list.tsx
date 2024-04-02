@@ -15,7 +15,7 @@ export default function OfferReviewList({ reviews }: OfferReviewListProps): JSX.
   const [currentVisibleReviews, setCurrentVisibleReviews] = useState<number>(0);
   const sortedVisibleReviews = sortedReviews.slice(0, COUNT_VISIBLE_REVIEWS + currentVisibleReviews);
 
-  const showClickHandle = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleMoreLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     setCurrentVisibleReviews(currentVisibleReviews + COUNT_VISIBLE_REVIEWS);
   };
@@ -31,7 +31,7 @@ export default function OfferReviewList({ reviews }: OfferReviewListProps): JSX.
       )}
 
       <a href="#"
-        onClick={showClickHandle}
+        onClick={handleMoreLinkClick}
         className={clsx('reviews__list__show-more-btn', sortedVisibleReviews.length === sortedReviews.length && HIDDEN_CLASS)}
       >
         Show more

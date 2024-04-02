@@ -14,11 +14,11 @@ export default function LoginForm() {
     password: '',
   });
 
-  const fieldsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFieldsChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({...formData, [event.target.name]: event.target.value});
   };
 
-  const formSubmitHandle = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     loginUser(formData);
@@ -28,7 +28,7 @@ export default function LoginForm() {
     <form className="login__form form"
       action=""
       method="post"
-      onSubmit={formSubmitHandle}
+      onSubmit={handleFormSubmit}
     >
       <fieldset className="login__form-fieldset" disabled={requestUsersStatus === RequestStatus.Loading}>
         <div className="login__input-wrapper form__input-wrapper">
@@ -40,7 +40,7 @@ export default function LoginForm() {
             placeholder="Email"
             required
             value={formData.login}
-            onChange={fieldsChangeHandler}
+            onChange={handleFieldsChange}
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -55,7 +55,7 @@ export default function LoginForm() {
             pattern={PASSWORD_PATTERN}
             title={PASSWORD_NOTE}
             value={formData.password}
-            onChange={fieldsChangeHandler}
+            onChange={handleFieldsChange}
           />
         </div>
         <button className="login__submit form__submit button" type="submit">Sign in</button>

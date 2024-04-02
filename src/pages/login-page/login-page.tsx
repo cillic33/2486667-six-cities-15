@@ -5,11 +5,11 @@ import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
 import LoginForm from '@/components/common/login-form/login-form';
 import HelmetComponent from '@/components/common/helmet-component/helmet';
-import {randomProperty} from '@/pages/login-page/utils';
+import {getRandomCity} from '@/pages/login-page/utils';
 import {CityShot} from '@/types/city';
 
 export default function LoginPage() {
-  const randomRoute: CityShot = randomProperty(appRouteOnlyCities);
+  const randomRoute: CityShot = getRandomCity(appRouteOnlyCities);
 
   return (
     <Container extraClass="page--gray page--login">

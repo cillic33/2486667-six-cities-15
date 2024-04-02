@@ -23,7 +23,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
   const isAuth = useAuth();
   const navigate = useNavigate();
 
-  const clickBookmarkHandle = (event: MouseEvent<HTMLButtonElement>): void => {
+  const handleBookmarkClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
 
     if (isAuth) {
@@ -50,7 +50,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
         isAuth && currentIsFavorite && `${block}__bookmark-button--active`
       )}
       type="button"
-      onClick={clickBookmarkHandle}
+      onClick={handleBookmarkClick}
       disabled={changeFavoriteStatus === RequestStatus.Loading}
     >
       <svg

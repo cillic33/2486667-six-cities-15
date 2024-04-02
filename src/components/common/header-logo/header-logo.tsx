@@ -7,10 +7,16 @@ export default function HeaderLogo(): JSX.Element {
 
   const isMainPage = () => pathname === '/';
 
+  const handleLogoClick = (event) => {
+    if (isMainPage()) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <Link
       to={AppRoute.Root}
-      onClick={isMainPage() ? (event) => event.preventDefault() : undefined}
+      onClick={handleLogoClick}
       className={clsx('header__logo-link', !isMainPage() && 'header__logo-link--active')}
     >
       <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />

@@ -12,7 +12,7 @@ type OffersSortListProps = {
 export default function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
   const {setSortOption} = useActionCreators(offersActions);
 
-  const clickOptionHandler = (option: SortOption): void => {
+  const handleOptionClick = (option: SortOption): void => {
     off();
     setSortOption(option);
   };
@@ -33,7 +33,7 @@ export default function OffersSortList({sortOption, isOn, off}: OffersSortListPr
             'places__option',
             sortOption === option.id && 'places__option--active',
           )}
-          onClick={() => clickOptionHandler(option.id)}
+          onClick={() => handleOptionClick(option.id)}
         >
           {option.name}
         </li>

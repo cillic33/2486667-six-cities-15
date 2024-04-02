@@ -9,7 +9,7 @@ export default function HeaderAuth() {
   const favoriteCount = useFavoriteCount();
   const { logoutUser } = useActionCreators(usersActions);
 
-  const logoutClickHandler = () => {
+  const handleLogoutClick = () => {
     logoutUser();
   };
 
@@ -23,7 +23,7 @@ export default function HeaderAuth() {
         </Link>
       </li>
       <li className="header__nav-item">
-        <Link className="header__nav-link" to="#" onClick={logoutClickHandler}>
+        <Link className="header__nav-link" to="#" onClick={handleLogoutClick}>
           <span className="header__signout">Sign out</span>
         </Link>
       </li>

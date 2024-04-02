@@ -9,7 +9,7 @@ export default function OffersSort() {
   const {isOn, off, toggle} = useBoolean(false);
   const sortOption = useAppSelector(offersSelectors.sortOption);
 
-  const clickCaptionHandler = (): void => {
+  const handleCaptionClick = (): void => {
     toggle();
   };
 
@@ -35,7 +35,7 @@ export default function OffersSort() {
       <span
         className="places__sorting-type"
         tabIndex={0}
-        onClick={clickCaptionHandler}
+        onClick={handleCaptionClick}
         style={{outline: 'none'}}
       >
         &nbsp;

@@ -23,7 +23,7 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
   const containerRef = useRef<HTMLHeadingElement | null>(null);
   const { pathname } = useLocation();
 
-  const hoverHandler = (id: Offer['id'] | null) => {
+  const handleCardHover = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
     setActivePoint(point);
   };
@@ -49,7 +49,7 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
 
         <div className="cities__places-list places__list tabs__content">
           {sortedOffers && sortedOffers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} block={block} hoverHandler={hoverHandler} />
+            <OfferCard key={offer.id} offer={offer} block={block} handleCardHover={handleCardHover} />
           ))}
         </div>
       </section>

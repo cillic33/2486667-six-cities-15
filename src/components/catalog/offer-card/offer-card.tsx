@@ -9,10 +9,10 @@ import OfferBookmark from '@/components/catalog/offer-bookmark';
 type CardProps = {
   offer: Offer | OfferPreview;
   block: string;
-  hoverHandler?: (id: Offer['id'] | null) => void;
+  handleCardHover?: (id: Offer['id'] | null) => void;
 }
 
-export default function OfferCard({ offer, block, hoverHandler }: CardProps): JSX.Element {
+export default function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
   return (
     <Link
       to={`${AppRoute.Offer}/${offer.id}`}
@@ -20,13 +20,13 @@ export default function OfferCard({ offer, block, hoverHandler }: CardProps): JS
     >
       <article
         onMouseEnter={() => {
-          if (hoverHandler) {
-            hoverHandler(offer.id);
+          if (handleCardHover) {
+            handleCardHover(offer.id);
           }
         }}
         onMouseLeave={() => {
-          if (hoverHandler) {
-            hoverHandler(null);
+          if (handleCardHover) {
+            handleCardHover(null);
           }
         }}
       >
