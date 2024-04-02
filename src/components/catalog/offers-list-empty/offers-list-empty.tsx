@@ -4,7 +4,7 @@ type OfferListEmptyProps = {
   currentCity: City;
 }
 
-export default function OffersListEmpty({ currentCity }: OfferListEmptyProps): JSX.Element {
+function OffersListEmpty({ currentCity }: OfferListEmptyProps): JSX.Element {
   return (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
@@ -18,3 +18,5 @@ export default function OffersListEmpty({ currentCity }: OfferListEmptyProps): J
     </div>
   );
 }
+
+export default OffersListEmpty;

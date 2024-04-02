@@ -4,7 +4,7 @@ import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useFavoriteCount} from '@/hooks/use-favorite-count/use-favorite-count';
 
-export default function HeaderAuth() {
+function HeaderAuth() {
   const user = useAppSelector(usersSelectors.user);
   const favoriteCount = useFavoriteCount();
   const { logoutUser } = useActionCreators(usersActions);
@@ -30,3 +30,5 @@ export default function HeaderAuth() {
     </>
   );
 }
+
+export default HeaderAuth;

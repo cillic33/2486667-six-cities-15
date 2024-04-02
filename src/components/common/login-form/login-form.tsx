@@ -6,7 +6,7 @@ import '@/components/common/login-form/styles.css';
 import {PASSWORD_NOTE, PASSWORD_PATTERN} from '@/components/common/login-form/const';
 import {AuthorizationData} from '@/types/user';
 
-export default function LoginForm() {
+function LoginForm() {
   const { loginUser } = useActionCreators(usersActions);
   const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
   const [formData, setFormData] = useState<AuthorizationData>({
@@ -63,3 +63,5 @@ export default function LoginForm() {
     </form>
   );
 }
+export default LoginForm;
+

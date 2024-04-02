@@ -9,7 +9,7 @@ type OffersSortListProps = {
   off: () => void;
 }
 
-export default function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
+function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
   const {setSortOption} = useActionCreators(offersActions);
 
   const handleOptionClick = (option: SortOption): void => {
@@ -41,3 +41,5 @@ export default function OffersSortList({sortOption, isOn, off}: OffersSortListPr
     </ul>
   );
 }
+
+export default OffersSortList;

@@ -51,5 +51,4 @@ function OffersSort() {
 }
 
 const MemoOffersSort = memo(OffersSort);
-
 export default MemoOffersSort;

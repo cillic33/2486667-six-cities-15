@@ -13,7 +13,7 @@ type OfferReviewFormProps = {
   scrollToTitle: () => void;
 }
 
-export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
+function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
   const { id } = useParams();
   const [formData, setFormData] = useState<Omit<PostReviewBody, 'offerId'>>({
     comment: '',
@@ -83,3 +83,5 @@ export default function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps)
     </form>
   );
 }
+
+export default OfferReviewForm;

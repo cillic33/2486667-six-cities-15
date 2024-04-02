@@ -11,7 +11,7 @@ type FromState = {
   from?: Location;
 }
 
-export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
+function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
   const isAuth = useAuth();
 
@@ -29,3 +29,5 @@ export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteP
 
   return children;
 }
+
+export default ProtectedRoute;

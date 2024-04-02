@@ -6,7 +6,7 @@ type FooterProps = {
   extraClass?: string;
 }
 
-export default function Footer({ extraClass }: FooterProps): JSX.Element {
+function Footer({ extraClass }: FooterProps): JSX.Element {
   return (
     <footer className={clsx('footer', extraClass !== undefined && extraClass)}>
       <Link className="footer__logo-link" to={AppRoute.Root}>
@@ -15,3 +15,5 @@ export default function Footer({ extraClass }: FooterProps): JSX.Element {
     </footer>
   );
 }
+
+export default Footer;

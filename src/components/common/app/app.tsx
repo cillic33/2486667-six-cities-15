@@ -12,7 +12,7 @@ import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
 import LoadingPage from '@/pages/loading-page/loading-page';
 
-export default function App(): JSX.Element {
+function App(): JSX.Element {
   const { fetchOffers } = useActionCreators(offersActions);
   const { checkAuth } = useActionCreators(usersActions);
 
@@ -59,3 +59,5 @@ export default function App(): JSX.Element {
     </Routes>
   );
 }
+
+export default App;

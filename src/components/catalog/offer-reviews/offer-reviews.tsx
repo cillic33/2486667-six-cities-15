@@ -10,7 +10,7 @@ type OfferReviewsProps = {
   reviews: Review[];
 }
 
-export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
+function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
   const isAuth = useAuth();
   const titleRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -33,3 +33,5 @@ export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Elemen
     </section>
   );
 }
+
+export default OfferReviews;

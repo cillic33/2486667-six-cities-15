@@ -6,7 +6,7 @@ type OfferReviewItemProps = {
   review: Review;
 }
 
-export default function OfferReviewItem({ review }: OfferReviewItemProps) {
+function OfferReviewItem({ review }: OfferReviewItemProps) {
   const {monthYear, fullDate} = convertDate(review.date);
 
   return (
@@ -34,3 +34,5 @@ export default function OfferReviewItem({ review }: OfferReviewItemProps) {
     </li>
   );
 }
+
+export default OfferReviewItem;

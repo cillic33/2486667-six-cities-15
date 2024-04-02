@@ -8,7 +8,7 @@ type RatingStarsProps = {
   rating: number;
 }
 
-export default function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
+function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
   return (
     <>
       {RATING.map(({value, title}) => (
@@ -31,3 +31,5 @@ export default function RatingStars({ handleFieldChange, rating }: RatingStarsPr
     </>
   );
 }
+
+export default RatingStars;

@@ -16,7 +16,7 @@ type OffersListProps = {
   block: string;
 }
 
-export default function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Element {
+function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
   const sortOption = useAppSelector(offersSelectors.sortOption);
   const sortedOffers = getSortedOffers(sortOption, offers);
@@ -65,3 +65,5 @@ export default function OffersList({ offers, currentCity, block }: OffersListPro
     </div>
   );
 }
+
+export default OffersList;

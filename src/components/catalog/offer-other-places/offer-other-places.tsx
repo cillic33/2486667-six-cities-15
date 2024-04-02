@@ -5,7 +5,7 @@ type OfferOtherPlacesProps = {
   offers: Offer[];
 }
 
-export default function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX.Element {
+function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX.Element {
   return (
     <div className="container">
       <section className="near-places places">
@@ -20,3 +20,5 @@ export default function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX
     </div>
   );
 }
+
+export default OfferOtherPlaces;

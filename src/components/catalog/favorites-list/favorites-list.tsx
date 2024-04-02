@@ -8,7 +8,7 @@ type FavoritesListProps = {
   favorites: Favorites;
 }
 
-export default function FavoritesList({ favorites }: FavoritesListProps): JSX.Element {
+function FavoritesList({ favorites }: FavoritesListProps): JSX.Element {
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
@@ -40,3 +40,5 @@ export default function FavoritesList({ favorites }: FavoritesListProps): JSX.El
     </section>
   );
 }
+
+export default FavoritesList;

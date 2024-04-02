@@ -15,7 +15,7 @@ type OfferBookmarkProps = {
   block: string;
 }
 
-export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
+function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
   const { changeFavorite } = useActionCreators(favoritesActions);
   const { updateFavoriteStatus } = useActionCreators(offersActions);
@@ -66,3 +66,5 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
     </button>
   );
 }
+
+export default OfferBookmark;

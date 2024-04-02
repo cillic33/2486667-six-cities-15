@@ -12,7 +12,7 @@ type CardProps = {
   handleCardHover?: (id: Offer['id'] | null) => void;
 }
 
-export default function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
+function OfferCard({ offer, block, handleCardHover }: CardProps): JSX.Element {
   return (
     <Link
       to={`${AppRoute.Offer}/${offer.id}`}
@@ -66,3 +66,5 @@ export default function OfferCard({ offer, block, handleCardHover }: CardProps):
     </Link>
   );
 }
+
+export default OfferCard;
