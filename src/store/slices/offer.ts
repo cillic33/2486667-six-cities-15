@@ -28,11 +28,7 @@ const offerSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Offer,
-  reducers: {
-    clear(state: OfferState) {
-      state.offer = null;
-    }
-  },
+  reducers: {},
   selectors: {
     offer: (state: OfferState) => state.offer,
     requestStatus: (state: OfferState) => state.requestStatus,

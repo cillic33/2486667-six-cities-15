@@ -50,13 +50,7 @@ const favoritesSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Favorites,
-  reducers: {
-    /*clear(state: FavoritesState) {
-      state.favorites = [];
-      state.requestStatus = RequestStatus.Idle;
-      state.changeStatus = RequestStatus.Idle;
-    }*/
-  },
+  reducers: {},
   selectors: {
     favorites: (state: FavoritesState) => state.favorites,
     requestStatus: (state: FavoritesState) => state.requestStatus,

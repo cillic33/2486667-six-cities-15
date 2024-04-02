@@ -41,13 +41,7 @@ const reviewsSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Reviews,
-  reducers: {
-    clear(state: ReviewsState) {
-      state.reviews = [];
-      state.requestStatus = RequestStatus.Idle;
-      state.postStatus = RequestStatus.Idle;
-    },
-  },
+  reducers: {},
   selectors: {
     reviews: (state: ReviewsState) => state.reviews,
     requestStatus: (state: ReviewsState) => state.requestStatus,

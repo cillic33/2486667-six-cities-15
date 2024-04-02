@@ -28,11 +28,7 @@ const nearbySlice = createSlice({
       }),
   initialState,
   name: NameSpace.Nearby,
-  reducers: {
-    clear(state: NearbyState) {
-      state.nearOffers = [];
-    }
-  },
+  reducers: {},
   selectors: {
     nearOffers: (state: NearbyState) => state.nearOffers,
     requestStatus: (state: NearbyState) => state.requestStatus,
