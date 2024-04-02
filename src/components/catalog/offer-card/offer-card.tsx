@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {getRatingWidth} from '@/utils';
 import {OfferPreview} from '@/types/offer-preview';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
-import {memo} from 'react';
+import {memo, useMemo} from 'react';
 
 type CardProps = {
   offer: Offer | OfferPreview;
@@ -14,6 +14,11 @@ type CardProps = {
 }
 
 function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
+  const offerRatingWidth = useMemo(
+    () => getRatingWidth(offer.rating),
+    [offer.rating]
+  );
+
   return (
     <Link
       to={`${AppRoute.Offer}/${offer.id}`}
@@ -54,7 +59,7 @@ function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: getRatingWidth(offer.rating)}}></span>
+              <span style={{width: offerRatingWidth}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
