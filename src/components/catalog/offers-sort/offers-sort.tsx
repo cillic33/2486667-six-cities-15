@@ -1,11 +1,11 @@
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {useAppSelector} from '@/hooks/store/store';
 import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
 import {offersSelectors} from '@/store/slices/offers';
 import {SORT_OPTIONS} from '@/types/sort';
 import {useBoolean} from '@/hooks/use-boolean/use-boolean';
 
-export default function OffersSort() {
+function OffersSort() {
   const {isOn, off, toggle} = useBoolean(false);
   const sortOption = useAppSelector(offersSelectors.sortOption);
 
@@ -49,3 +49,5 @@ export default function OffersSort() {
     </form>
   );
 }
+
+export default memo(OffersSort);

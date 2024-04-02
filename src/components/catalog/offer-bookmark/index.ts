@@ -1,2 +1,3 @@
+import { memo } from 'react';
 import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
-export default OfferBookmark;
+export default memo(OfferBookmark);
