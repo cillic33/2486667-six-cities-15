@@ -1,12 +1,7 @@
-import {Offer} from '@/types/offer';
 import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchNearOffers} from '@/store/thunks/nearby';
-
-interface NearbyState {
-  nearOffers: Offer[];
-  requestStatus: RequestStatus;
-}
+import {NearbyState} from '@/types/nearby';
 
 const initialState: NearbyState = {
   nearOffers: [],
