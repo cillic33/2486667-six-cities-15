@@ -1,26 +1,25 @@
 import {OfferPreview} from '@/types/offer-preview';
-import {random, name, commerce, image, address} from 'faker';
 
 export const makeFakeOfferCard = (): OfferPreview => ({
-  id: random.uuid(),
-  title: name.title(),
+  id: 'd9027e8b-affc-4dd5-8bfa-a99149c85785',
+  title: 'Tile House',
   type: 'house',
-  price: commerce.price(),
-  previewImage: image.imageUrl(),
+  price: 458,
+  previewImage: 'https://15.design.htmlacademy.pro/static/hotel/4.jpg',
   city: {
-    name: address.city(),
+    name: 'Paris',
     location: {
-      latitude: address.latitude(),
-      longitude: address.longitude(),
+      latitude: 48.85661,
+      longitude: 2.351499,
       zoom: 13
     }
   },
   location: {
-    latitude: address.latitude(),
-    longitude: address.longitude(),
+    latitude: 48.868610000000004,
+    longitude: 2.342499,
     zoom: 16
   },
-  isFavorite: random.boolean(),
-  isPremium: random.boolean(),
-  rating: random.number(5)
+  isFavorite: true,
+  isPremium: true,
+  rating: 5
 } as OfferPreview);
