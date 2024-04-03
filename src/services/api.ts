@@ -1,7 +1,13 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './token';
 import {toast} from 'react-toastify';
-import {AUTHORIZATION_ERROR, NOT_LOGGED, StatusCodeMapping} from '@/services/const';
+import {
+  BAD_REQUEST_ERROR,
+  UNAUTHORIZED_ERROR,
+  NOT_FOUND_ERROR,
+  StatusCodeMapping
+} from '@/services/const';
+import {StatusCodes} from 'http-status-codes';
 
 const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 5000;
@@ -40,11 +46,14 @@ export const createAPI = (): AxiosInstance => {
 
         if (detailMessage && status && message) {
           switch (status) {
-            case 400:
-              toast.error(AUTHORIZATION_ERROR);
+            case StatusCodes.BAD_REQUEST:
+              toast.error(BAD_REQUEST_ERROR);
               break;
-            case 401:
-              toast.warn(NOT_LOGGED);
+            case StatusCodes.UNAUTHORIZED:
+              toast.warn(UNAUTHORIZED_ERROR);
+              break;
+            case StatusCodes.NOT_FOUND:
+              toast.warn(NOT_FOUND_ERROR);
               break;
             default:
               toast.warn(message);
