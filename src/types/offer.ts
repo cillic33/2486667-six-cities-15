@@ -2,7 +2,7 @@ import {Host} from './host';
 import {OfferPreview} from './offer-preview';
 import {RequestStatus} from '@/utils/const';
 
-type Offer = {
+export type Offer = {
   description: string;
   images: string[];
   goods: string[];
@@ -11,14 +11,12 @@ type Offer = {
   maxAdults: number;
 } & OfferPreview;
 
-interface OfferState {
+export interface OfferState {
   offer: Offer | null;
   requestStatus: RequestStatus;
 }
 
-type ConvertDate = {
+export type ConvertDate = {
   monthYear: string;
   fullDate: string;
 }
-
-export {Offer, OfferState, ConvertDate};
