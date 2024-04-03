@@ -57,4 +57,16 @@ describe('Favorites slice', () => {
 
     expect(result).toEqual(expectedState);
   });
+
+  it('should set "requestStatus" to "RequestStatus.Failed" with "fetchFavorites.rejected"', () => {
+    const expectedState = {
+      favorites: [],
+      requestStatus: RequestStatus.Failed,
+      changeStatus: RequestStatus.Idle,
+    };
+
+    const result = favoritesSlice.reducer(undefined, fetchFavorites.rejected('', undefined));
+
+    expect(result).toEqual(expectedState);
+  });
 });
