@@ -1,7 +1,8 @@
 import {Host} from './host';
 import {OfferPreview} from './offer-preview';
+import {RequestStatus} from '@/utils/const';
 
-export type Offer = {
+type Offer = {
   description: string;
   images: string[];
   goods: string[];
@@ -10,7 +11,14 @@ export type Offer = {
   maxAdults: number;
 } & OfferPreview;
 
-export type ConvertDate = {
+interface OfferState {
+  offer: Offer | null;
+  requestStatus: RequestStatus;
+}
+
+type ConvertDate = {
   monthYear: string;
   fullDate: string;
 }
+
+export {Offer, OfferState, ConvertDate};
