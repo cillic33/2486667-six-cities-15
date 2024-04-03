@@ -1,27 +1,29 @@
 import {OfferPreview} from '@/types/offer-preview';
 import {RequestStatus} from '@/utils/const';
 
-export interface FavoritesState {
+interface FavoritesState {
   favorites: OfferPreview[];
   requestStatus: RequestStatus;
   changeStatus: RequestStatus;
 }
 
-export type Favorites = {
+type Favorites = {
   [key: string]: OfferPreview[];
 }
 
-export enum FavoriteStatus {
+enum FavoriteStatus {
   Add = 1,
   Remove = 0,
 }
 
-export type ChangeFavoriteArgs = {
+type ChangeFavoriteArgs = {
   offerId: string;
   status: FavoriteStatus;
 }
 
-export type ChangeFavoriteResponse = {
+type ChangeFavoriteResponse = {
   offer: OfferPreview;
   status: FavoriteStatus;
 }
+
+export {FavoritesState, Favorites, FavoriteStatus, ChangeFavoriteArgs, ChangeFavoriteResponse};
