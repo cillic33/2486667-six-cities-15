@@ -5,7 +5,7 @@ import {makeFakeOfferCard} from '@/utils/mock';
 
 describe('favorites slice', () => {
 
-  describe('fetchFavorites', () => {
+  describe('emptyAction', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };
       const expectedState = {
@@ -31,7 +31,9 @@ describe('favorites slice', () => {
 
       expect(result).toEqual(expectedState);
     });
+  });
 
+  describe('fetchFavorites', () => {
     it('should set "requestStatus" to "RequestStatus.Loading" with "fetchFavorites.pending"', () => {
       const expectedState = {
         favorites: [],
