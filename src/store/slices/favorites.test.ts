@@ -2,6 +2,7 @@ import {favoritesSlice} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
 import {fetchFavorites} from '@/store/thunks/favorites';
 import {makeFakeOfferCard} from '@/utils/mock';
+import * as faker from "faker";
 
 describe('Favorites slice', () => {
   it('should return initial state with empty action', () => {
@@ -44,6 +45,7 @@ describe('Favorites slice', () => {
 
   it('should set "favorites" to array with offer card, "requestStatus" to "RequestStatus.Success" with "fetchFavorites.fulfilled"', () => {
     const mockOfferCard = makeFakeOfferCard();
+    console.log(mockOfferCard);
     const expectedState = {
       favorites: [mockOfferCard],
       requestStatus: RequestStatus.Success,
