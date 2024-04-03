@@ -1,5 +1,5 @@
 import {OfferPreview} from '@/types/offer-preview';
-import {random, name, commerce, image, address} from "faker";
+import {random, name, commerce, image, address} from 'faker';
 
 export const makeFakeOfferCard = (): OfferPreview => ({
   id: random.uuid(),
