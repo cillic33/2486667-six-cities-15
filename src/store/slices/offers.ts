@@ -1,17 +1,10 @@
-import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import {DEFAULT_CITY, NameSpace, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffers} from '@/store/thunks/offers';
 import {ChangeFavoriteArgs} from '@/types/favorites';
 import {SortOption} from '@/types/sort';
-
-interface OffersState {
-  offers: Offer[];
-  city: City;
-  sortOption: SortOption;
-  requestStatus: RequestStatus;
-}
+import {OffersState} from '@/types/offers';
 
 const initialState: OffersState = {
   offers: [],
