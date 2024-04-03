@@ -65,7 +65,7 @@ describe('Favorites slice', () => {
       changeStatus: RequestStatus.Idle,
     };
 
-    const result = favoritesSlice.reducer(undefined, fetchFavorites.rejected('', undefined));
+    const result = favoritesSlice.reducer(undefined, fetchFavorites.rejected(null, '', undefined));
 
     expect(result).toEqual(expectedState);
   });
