@@ -37,7 +37,7 @@ describe('Favorites slice', () => {
       changeStatus: RequestStatus.Idle,
     };
 
-    const result = favoritesSlice.reducer(undefined, fetchFavorites.pending);
+    const result = favoritesSlice.reducer(undefined, fetchFavorites.pending('', undefined));
 
     expect(result).toEqual(expectedState);
   });
