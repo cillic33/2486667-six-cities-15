@@ -1,13 +1,7 @@
 import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
-import {Review} from '@/types/reviews';
 import {fetchReviews, postReview} from '@/store/thunks/reviews';
-
-interface ReviewsState {
-  reviews: Review[];
-  requestStatus: RequestStatus;
-  postStatus: RequestStatus;
-}
+import {ReviewsState} from '@/types/reviews';
 
 const initialState: ReviewsState = {
   reviews: [],

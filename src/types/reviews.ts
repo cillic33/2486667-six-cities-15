@@ -1,7 +1,8 @@
 import {User} from '@/types/user';
 import {ReactEventHandler} from 'react';
+import {RequestStatus} from '@/utils/const';
 
-export type Review = {
+type Review = {
   id: string;
   comment: string;
   date: string;
@@ -9,10 +10,18 @@ export type Review = {
   user: User;
 }
 
-export type PostReviewBody = {
+interface ReviewsState {
+  reviews: Review[];
+  requestStatus: RequestStatus;
+  postStatus: RequestStatus;
+}
+
+type PostReviewBody = {
   offerId: string;
   comment: string;
   rating: number;
 }
 
-export type HandleFieldChange = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+type HandleFieldChange = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+
+export {Review, ReviewsState, PostReviewBody, HandleFieldChange};
