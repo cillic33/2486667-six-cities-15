@@ -1,14 +1,14 @@
 import {favoritesSlice} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
 import {changeFavorite, fetchFavorites} from '@/store/thunks/favorites';
-import {makeFakeOfferCard} from '@/utils/mock';
-import {expect} from 'vitest';
+import {makeFakePreviewOfferCard} from '@/utils/mock';
 import {ChangeFavoriteArgs, ChangeFavoriteResponse, FavoritesState, FavoriteStatus} from '@/types/favorites';
+import {describe, it, expect} from "vitest";
 
 const IS_FAVORITE = true;
 
 describe('favorites slice', () => {
-  describe('emptyAction', () => {
+  describe('empty actions', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };
       const expectedState: FavoritesState = {
@@ -50,7 +50,7 @@ describe('favorites slice', () => {
     });
 
     it('should set "favorites" to array with offer card, "requestStatus" to "RequestStatus.Success" with "fetchFavorites.fulfilled"', () => {
-      const mockOfferCard = makeFakeOfferCard();
+      const mockOfferCard = makeFakePreviewOfferCard();
       const expectedState: FavoritesState = {
         favorites: [mockOfferCard],
         requestStatus: RequestStatus.Success,
@@ -80,7 +80,7 @@ describe('favorites slice', () => {
 
   describe('changeFavorite', () => {
     it('should set "changeStatus" to "RequestStatus.Loading" with "changeFavorite.pending"', () => {
-      const mockOfferCard = makeFakeOfferCard(IS_FAVORITE);
+      const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const expectedState: FavoritesState = {
         favorites: [],
         requestStatus: RequestStatus.Idle,
@@ -97,7 +97,7 @@ describe('favorites slice', () => {
     });
 
     it('should set "changeStatus" to "RequestStatus.Success" and add to "favorites" next offer card with "changeFavorite.fulfilled"', () => {
-      const mockOfferCard = makeFakeOfferCard(IS_FAVORITE);
+      const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const initialState: FavoritesState = {
         favorites: [],
         requestStatus: RequestStatus.Idle,
@@ -126,7 +126,7 @@ describe('favorites slice', () => {
     });
 
     it('should set "changeStatus" to "RequestStatus.Success" and remove from "favorites" past offer card with "changeFavorite.fulfilled"', () => {
-      const mockOfferCard = makeFakeOfferCard(!IS_FAVORITE);
+      const mockOfferCard = makeFakePreviewOfferCard(!IS_FAVORITE);
       const initialState: FavoritesState = {
         favorites: [mockOfferCard],
         requestStatus: RequestStatus.Idle,
@@ -155,7 +155,7 @@ describe('favorites slice', () => {
     });
 
     it('should "changeStatus" to "RequestStatus.Failed" with "changeFavorite.rejected"', () => {
-      const mockOfferCard = makeFakeOfferCard(IS_FAVORITE);
+      const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const expectedState: FavoritesState = {
         favorites: [],
         requestStatus: RequestStatus.Idle,
