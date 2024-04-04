@@ -5,6 +5,7 @@ import {fetchOffers} from '@/store/thunks/offers';
 import {ChangeFavoriteArgs} from '@/types/favorites';
 import {SortOption} from '@/types/sort';
 import {OffersState} from '@/types/offers';
+import {OfferPreview} from '@/types/offer-preview';
 
 const initialState: OffersState = {
   offers: [],
@@ -45,6 +46,14 @@ const offersSlice = createSlice({
         }
         return item;
       });
+    },
+    updateAllFavoriteStatuses: (state, action: PayloadAction<OfferPreview[]>) => {
+      const favorites = action.payload;
+
+      state.offers = state.offers.map((item) => ({
+        ...item,
+        isFavorite: !!favorites.find((el) => el.id === item.id),
+      }));
     }
   },
   selectors: {

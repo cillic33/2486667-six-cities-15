@@ -35,7 +35,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
 
     return () => {
       isMounted = false;
-    }
+    };
   }, [mapRef, currentCity]);
 
   return map;
