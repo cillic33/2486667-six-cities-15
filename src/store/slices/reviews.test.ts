@@ -78,14 +78,14 @@ describe('reviewsSlice', () => {
 
   describe('postReview', () => {
     it('should set "postStatus" to "RequestStatus.Loading" with "postReview.pending" action', () => {
-      const mockOfferId = makeFakeOfferId();
+      const mockReviewBody = makeFakeReviewBody();
       const expectedState: ReviewsState = {
         reviews: [],
         requestStatus: RequestStatus.Idle,
         postStatus: RequestStatus.Loading,
       };
 
-      const result = reviewsSlice.reducer(undefined, postReview.pending('', mockOfferId));
+      const result = reviewsSlice.reducer(undefined, postReview.pending('', mockReviewBody));
 
       expect(result).toEqual(expectedState);
     });
@@ -113,14 +113,14 @@ describe('reviewsSlice', () => {
     });
 
     it('should set "postStatus" to "RequestStatus.Failed" with "postReview.rejected" action', () => {
-      const mockOfferId = makeFakeOfferId();
+      const mockReviewBody = makeFakeReviewBody();
       const expectedState: ReviewsState = {
         reviews: [],
         requestStatus: RequestStatus.Idle,
         postStatus: RequestStatus.Failed,
       };
 
-      const result = reviewsSlice.reducer(undefined, postReview.rejected(null, '', mockOfferId));
+      const result = reviewsSlice.reducer(undefined, postReview.rejected(null, '', mockReviewBody));
 
       expect(result).toEqual(expectedState);
     });
