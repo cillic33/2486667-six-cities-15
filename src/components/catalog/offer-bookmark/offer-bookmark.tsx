@@ -24,7 +24,15 @@ function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCurrentIsFavorite(isFavorite);
+    let isMounted = true;
+
+    if (isMounted) {
+      setCurrentIsFavorite(isFavorite);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [isFavorite]);
 
   const handleBookmarkClick = (event: MouseEvent<HTMLButtonElement>): void => {
