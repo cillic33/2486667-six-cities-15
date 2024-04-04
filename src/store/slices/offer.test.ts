@@ -64,7 +64,7 @@ describe('offer slice', () => {
         requestStatus: RequestStatus.Failed,
       };
 
-      const result = offerSlice.reducer(undefined, fetchOffer.rejected('', mockOfferId));
+      const result = offerSlice.reducer(undefined, fetchOffer.rejected(null, '', mockOfferId));
 
       expect(result).toEqual(expectedState);
     });
