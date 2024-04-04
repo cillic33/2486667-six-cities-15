@@ -12,7 +12,7 @@ import {
 
 const IS_FAVORITE = true;
 
-describe('offers slice', () => {
+describe('offersSlice', () => {
   describe('empty actions', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };

@@ -3,6 +3,7 @@ import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import {SortOption} from '@/types/sort';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
+import {PostReviewBody, Review} from '@/types/reviews';
 
 export const makeFakePreviewOfferCard = (isFavorite = false): OfferPreview => ({
   id: 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c',
@@ -69,3 +70,21 @@ export const makeFakeChangeFavoriteArgs = (): ChangeFavoriteArgs => ({
   offerId: 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c',
   status: FavoriteStatus.Add,
 });
+
+export const makeFakeReview = (): Review => ({
+  id: 'db4cb87b-7c0f-45f1-8deb-742499f6aa30',
+  comment: 'Home is amazing. It\'s like staying in a museum. The rooms, furnishings and artworks are incredible. The views of My Vesuvius',
+  date: '2024-03-12T21:00:00.035Z',
+  rating: 3,
+  user: {
+    name: 'Isaac',
+    avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/6.jpg',
+    isPro: true
+  }
+} as Review);
+
+export const makeFakeReviewBody = ():PostReviewBody => ({
+  offerId: 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c',
+  comment: 'Home is amazing. It\'s like staying in a museum. The rooms, furnishings and artworks are incredible. The views of My Vesuvius',
+  rating: 3,
+} as PostReviewBody);

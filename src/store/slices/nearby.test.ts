@@ -5,7 +5,7 @@ import {describe, it, expect} from 'vitest';
 import {fetchNearOffers} from '@/store/thunks/nearby';
 import {makeFakeOfferCard, makeFakeOfferId} from '@/utils/mock';
 
-describe('nearby slice', () => {
+describe('nearbySlice', () => {
   describe('empty actions', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };

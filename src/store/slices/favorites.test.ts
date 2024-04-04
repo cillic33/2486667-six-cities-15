@@ -7,7 +7,7 @@ import {describe, it, expect} from 'vitest';
 
 const IS_FAVORITE = true;
 
-describe('favorites slice', () => {
+describe('favoritesSlice', () => {
   describe('empty actions', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };

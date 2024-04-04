@@ -5,7 +5,7 @@ import {offerSlice} from '@/store/slices/offer';
 import {fetchOffer} from '@/store/thunks/offer';
 import {makeFakeOfferCard, makeFakeOfferId} from '@/utils/mock';
 
-describe('offer slice', () => {
+describe('offerSlice', () => {
   describe('empty actions', () => {
     it('should return initial state with empty action', () => {
       const emptyAction = { type: '' };
