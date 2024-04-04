@@ -1,9 +1,9 @@
-import {RequestStatus} from "@/utils/const";
-import {NearbyState} from "@/types/nearby";
-import {nearbySlice} from "@/store/slices/nearby";
-import {describe, it, expect} from "vitest";
-import {fetchNearOffers} from "@/store/thunks/nearby";
-import {makeFakeOfferCard} from "@/utils/mock";
+import {RequestStatus} from '@/utils/const';
+import {NearbyState} from '@/types/nearby';
+import {nearbySlice} from '@/store/slices/nearby';
+import {describe, it, expect} from 'vitest';
+import {fetchNearOffers} from '@/store/thunks/nearby';
+import {makeFakeOfferCard} from '@/utils/mock';
 
 describe('nearby slice', () => {
   describe('empty actions', () => {
@@ -65,6 +65,8 @@ describe('nearby slice', () => {
         };
 
         const result = nearbySlice.reducer(undefined, fetchNearOffers.rejected(null, '', undefined));
+
+        expect(result).toEqual(expectedState);
       });
     });
   });

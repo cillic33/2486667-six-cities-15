@@ -3,7 +3,7 @@ import {RequestStatus} from '@/utils/const';
 import {changeFavorite, fetchFavorites} from '@/store/thunks/favorites';
 import {makeFakePreviewOfferCard} from '@/utils/mock';
 import {ChangeFavoriteArgs, ChangeFavoriteResponse, FavoritesState, FavoriteStatus} from '@/types/favorites';
-import {describe, it, expect} from "vitest";
+import {describe, it, expect} from 'vitest';
 
 const IS_FAVORITE = true;
 
