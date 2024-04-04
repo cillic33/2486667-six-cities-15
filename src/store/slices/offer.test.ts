@@ -33,7 +33,7 @@ describe('offer slice', () => {
   });
 
   describe('fetchOffer', () => {
-    it('should set "requestStatus" to "RequestStatus.Loading" with "fetchOffer.pending"', () => {
+    it('should set "requestStatus" to "RequestStatus.Loading" with "fetchOffer.pending" action', () => {
       const mockOfferId = makeFakeOfferId();
       const expectedState: OfferState = {
         offer: null,
@@ -45,7 +45,7 @@ describe('offer slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set offer to offer card, "requestStatus" to "RequestStatus.Success" with "fetchOffer.fulfilled"', () => {
+    it('should set offer to offer card, "requestStatus" to "RequestStatus.Success" with "fetchOffer.fulfilled" action', () => {
       const mockOfferCard = makeFakeOfferCard();
       const expectedState: OfferState = {
         offer: mockOfferCard,
@@ -57,7 +57,7 @@ describe('offer slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set "requestStatus" to "RequestStatus.Failed" with "fetchOffer.rejected"', () => {
+    it('should set "requestStatus" to "RequestStatus.Failed" with "fetchOffer.rejected" action', () => {
       const mockOfferId = makeFakeOfferId();
       const expectedState: OfferState = {
         offer: null,

@@ -30,46 +30,46 @@ describe('nearby slice', () => {
 
       expect(result).toEqual(expectedState);
     });
+  });
 
-    describe('fetchNearOffers', () => {
-      it('should set "requestStatus" to "RequestStatus.Loading" with "fetchNearOffers.pending"', () => {
-        const mockOfferId = makeFakeOfferId();
-        const expectedState: NearbyState = {
-          nearOffers: [],
-          requestStatus: RequestStatus.Loading,
-        };
+  describe('fetchNearOffers', () => {
+    it('should set "requestStatus" to "RequestStatus.Loading" with "fetchNearOffers.pending" action', () => {
+      const mockOfferId = makeFakeOfferId();
+      const expectedState: NearbyState = {
+        nearOffers: [],
+        requestStatus: RequestStatus.Loading,
+      };
 
-        const result = nearbySlice.reducer(undefined, fetchNearOffers.pending('', mockOfferId));
+      const result = nearbySlice.reducer(undefined, fetchNearOffers.pending('', mockOfferId));
 
-        expect(result).toEqual(expectedState);
-      });
+      expect(result).toEqual(expectedState);
+    });
 
-      it('should set nearOffers to array with order card, "requestStatus" to "RequestStatus.Success" with "fetchNearOffers.fulfilled"', () => {
-        const mockOfferCard = makeFakeOfferCard();
-        const expectedState: NearbyState = {
-          nearOffers: [mockOfferCard],
-          requestStatus: RequestStatus.Success,
-        };
+    it('should set nearOffers to array with order card, "requestStatus" to "RequestStatus.Success" with "fetchNearOffers.fulfilled" action', () => {
+      const mockOfferCard = makeFakeOfferCard();
+      const expectedState: NearbyState = {
+        nearOffers: [mockOfferCard],
+        requestStatus: RequestStatus.Success,
+      };
 
-        const result = nearbySlice.reducer(
-          undefined,
-          fetchNearOffers.fulfilled([mockOfferCard], '', mockOfferCard.id),
-        );
+      const result = nearbySlice.reducer(
+        undefined,
+        fetchNearOffers.fulfilled([mockOfferCard], '', mockOfferCard.id),
+      );
 
-        expect(result).toEqual(expectedState);
-      });
+      expect(result).toEqual(expectedState);
+    });
 
-      it('should set "requestStatus" to "RequestStatus.Failed" with "fetchNearOffers.rejected"', () => {
-        const mockOfferId = makeFakeOfferId();
-        const expectedState: NearbyState = {
-          nearOffers: [],
-          requestStatus: RequestStatus.Failed,
-        };
+    it('should set "requestStatus" to "RequestStatus.Failed" with "fetchNearOffers.rejected" action', () => {
+      const mockOfferId = makeFakeOfferId();
+      const expectedState: NearbyState = {
+        nearOffers: [],
+        requestStatus: RequestStatus.Failed,
+      };
 
-        const result = nearbySlice.reducer(undefined, fetchNearOffers.rejected(null, '', mockOfferId));
+      const result = nearbySlice.reducer(undefined, fetchNearOffers.rejected(null, '', mockOfferId));
 
-        expect(result).toEqual(expectedState);
-      });
+      expect(result).toEqual(expectedState);
     });
   });
 });

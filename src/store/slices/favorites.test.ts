@@ -37,7 +37,7 @@ describe('favorites slice', () => {
   });
 
   describe('fetchFavorites', () => {
-    it('should set "requestStatus" to "RequestStatus.Loading" with "fetchFavorites.pending"', () => {
+    it('should set "requestStatus" to "RequestStatus.Loading" with "fetchFavorites.pending" action', () => {
       const expectedState: FavoritesState = {
         favorites: [],
         requestStatus: RequestStatus.Loading,
@@ -49,7 +49,7 @@ describe('favorites slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set "favorites" to array with offer card, "requestStatus" to "RequestStatus.Success" with "fetchFavorites.fulfilled"', () => {
+    it('should set "favorites" to array with offer card, "requestStatus" to "RequestStatus.Success" with "fetchFavorites.fulfilled" action', () => {
       const mockOfferCard = makeFakePreviewOfferCard();
       const expectedState: FavoritesState = {
         favorites: [mockOfferCard],
@@ -65,7 +65,7 @@ describe('favorites slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set "requestStatus" to "RequestStatus.Failed" with "fetchFavorites.rejected"', () => {
+    it('should set "requestStatus" to "RequestStatus.Failed" with "fetchFavorites.rejected" action', () => {
       const expectedState: FavoritesState = {
         favorites: [],
         requestStatus: RequestStatus.Failed,
@@ -79,7 +79,7 @@ describe('favorites slice', () => {
   });
 
   describe('changeFavorite', () => {
-    it('should set "changeStatus" to "RequestStatus.Loading" with "changeFavorite.pending"', () => {
+    it('should set "changeStatus" to "RequestStatus.Loading" with "changeFavorite.pending" action', () => {
       const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const expectedState: FavoritesState = {
         favorites: [],
@@ -96,7 +96,7 @@ describe('favorites slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set "changeStatus" to "RequestStatus.Success" and add to "favorites" next offer card with "changeFavorite.fulfilled"', () => {
+    it('should set "changeStatus" to "RequestStatus.Success" and add to "favorites" next offer card with "changeFavorite.fulfilled" action', () => {
       const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const initialState: FavoritesState = {
         favorites: [],
@@ -125,7 +125,7 @@ describe('favorites slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should set "changeStatus" to "RequestStatus.Success" and remove from "favorites" past offer card with "changeFavorite.fulfilled"', () => {
+    it('should set "changeStatus" to "RequestStatus.Success" and remove from "favorites" past offer card with "changeFavorite.fulfilled" action', () => {
       const mockOfferCard = makeFakePreviewOfferCard(!IS_FAVORITE);
       const initialState: FavoritesState = {
         favorites: [mockOfferCard],
@@ -154,7 +154,7 @@ describe('favorites slice', () => {
       expect(result).toEqual(expectedState);
     });
 
-    it('should "changeStatus" to "RequestStatus.Failed" with "changeFavorite.rejected"', () => {
+    it('should "changeStatus" to "RequestStatus.Failed" with "changeFavorite.rejected" action', () => {
       const mockOfferCard = makeFakePreviewOfferCard(IS_FAVORITE);
       const expectedState: FavoritesState = {
         favorites: [],
