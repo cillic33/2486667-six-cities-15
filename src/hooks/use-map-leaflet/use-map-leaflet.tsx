@@ -9,7 +9,9 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
   const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (mapRef && mapRef?.current !== null && !isRenderedRef.current) {
+    let isMounted = true;
+
+    if (isMounted && mapRef && mapRef?.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: currentCity.location.latitude,
@@ -29,6 +31,10 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
 
       setMap(instance);
       isRenderedRef.current = true;
+    }
+
+    return () => {
+      isMounted = false;
     }
   }, [mapRef, currentCity]);
 
