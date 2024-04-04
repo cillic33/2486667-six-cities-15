@@ -48,3 +48,5 @@ export const makeFakeOfferCard = (): Offer => ({
   isPremium: true,
   rating: 3.1
 } as Offer);
+
+export const makeFakeOfferId = () => 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c';

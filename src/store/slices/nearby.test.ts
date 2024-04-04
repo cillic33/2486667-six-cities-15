@@ -3,7 +3,7 @@ import {NearbyState} from '@/types/nearby';
 import {nearbySlice} from '@/store/slices/nearby';
 import {describe, it, expect} from 'vitest';
 import {fetchNearOffers} from '@/store/thunks/nearby';
-import {makeFakeOfferCard} from '@/utils/mock';
+import {makeFakeOfferCard, makeFakeOfferId} from '@/utils/mock';
 
 describe('nearby slice', () => {
   describe('empty actions', () => {
@@ -33,12 +33,13 @@ describe('nearby slice', () => {
 
     describe('fetchNearOffers', () => {
       it('should set "requestStatus" to "RequestStatus.Loading" with "fetchNearOffers.pending"', () => {
+        const mockOfferId = makeFakeOfferId();
         const expectedState: NearbyState = {
           nearOffers: [],
           requestStatus: RequestStatus.Loading,
         };
 
-        const result = nearbySlice.reducer(undefined, fetchNearOffers.pending('', undefined));
+        const result = nearbySlice.reducer(undefined, fetchNearOffers.pending('', mockOfferId));
 
         expect(result).toEqual(expectedState);
       });
@@ -52,19 +53,20 @@ describe('nearby slice', () => {
 
         const result = nearbySlice.reducer(
           undefined,
-          fetchNearOffers.fulfilled([mockOfferCard], '', undefined),
+          fetchNearOffers.fulfilled([mockOfferCard], '', mockOfferCard.id),
         );
 
         expect(result).toEqual(expectedState);
       });
 
       it('should set "requestStatus" to "RequestStatus.Failed" with "fetchNearOffers.rejected"', () => {
+        const mockOfferId = makeFakeOfferId();
         const expectedState: NearbyState = {
           nearOffers: [],
           requestStatus: RequestStatus.Failed,
         };
 
-        const result = nearbySlice.reducer(undefined, fetchNearOffers.rejected(null, '', undefined));
+        const result = nearbySlice.reducer(undefined, fetchNearOffers.rejected(null, '', mockOfferId));
 
         expect(result).toEqual(expectedState);
       });
