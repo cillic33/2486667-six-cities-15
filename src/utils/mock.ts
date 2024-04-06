@@ -4,6 +4,8 @@ import {City} from '@/types/city';
 import {SortOption} from '@/types/sort';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {PostReviewBody, Review} from '@/types/reviews';
+import {AuthorizationData, UserData} from '@/types/user';
+import {AuthorizationStatus} from '@/utils/const';
 
 export const makeFakePreviewOfferCard = (isFavorite = false): OfferPreview => ({
   id: 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c',
@@ -88,3 +90,18 @@ export const makeFakeReviewBody = ():PostReviewBody => ({
   comment: 'Home is amazing. It\'s like staying in a museum. The rooms, furnishings and artworks are incredible. The views of My Vesuvius',
   rating: 3,
 } as PostReviewBody);
+
+export const makeFakeUserData = ():UserData => ({
+  email: 'oliver.conner@gmail.com',
+  token: 'b2xpdmVyLmNvbm5lckBnbWFpbC5jb20=',
+  name: 'Oliver.conner',
+  avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/5.jpg',
+  isPro: false
+} as UserData);
+
+export const makeFakeAuthorisationData = ():AuthorizationData => ({
+  login: 'Oliver.conner@gmail.com',
+  password: 'password1',
+});
+
+export const makeFakeAuthorizationStatus = (status: AuthorizationStatus):AuthorizationStatus => status;
