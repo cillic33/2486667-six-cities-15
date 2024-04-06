@@ -117,14 +117,13 @@ describe('usersSlice', () => {
 
   describe('logoutUser', () => {
     it('should set "requestStatus" to "RequestStatus.Loading" with "logoutUser.pending"', () => {
-      const mockAuthorisationData = makeFakeAuthorisationData();
       const expectedState: UsersState = {
         user: null,
         authorizationStatus: AuthorizationStatus.Unknown,
         requestStatus: RequestStatus.Loading,
       };
 
-      const result = usersSlice.reducer(undefined, logoutUser.pending('', mockAuthorisationData));
+      const result = usersSlice.reducer(undefined, logoutUser.pending('', undefined));
 
       expect(result).toEqual(expectedState);
     });
@@ -136,7 +135,7 @@ describe('usersSlice', () => {
         requestStatus: RequestStatus.Success,
       };
 
-      const result = usersSlice.reducer(undefined, logoutUser.fulfilled('', undefined));
+      const result = usersSlice.reducer(undefined, logoutUser.fulfilled(undefined, '', undefined));
 
       expect(result).toEqual(expectedState);
     });
