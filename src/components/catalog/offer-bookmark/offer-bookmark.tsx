@@ -1,5 +1,5 @@
 import {clsx} from 'clsx';
-import {MouseEvent, useState} from 'react';
+import {MouseEvent, useEffect, useState} from 'react';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
@@ -22,6 +22,18 @@ function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.
   const changeFavoriteStatus = useAppSelector(favoritesSelectors.changeStatus);
   const isAuth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isMounted) {
+      setCurrentIsFavorite(isFavorite);
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isFavorite]);
 
   const handleBookmarkClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();

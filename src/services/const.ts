@@ -6,7 +6,9 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.NOT_FOUND]: true
 };
 
-const NOT_LOGGED = 'You are not logged in';
-const AUTHORIZATION_ERROR = 'Invalid username or password';
+const BAD_REQUEST_ERROR = 'Request cannot be completed';
+const UNAUTHORIZED_ERROR = 'Server cannot identify the client';
+const NOT_FOUND_ERROR = 'Server could not find the requested website';
 
-export {StatusCodeMapping, NOT_LOGGED, AUTHORIZATION_ERROR};
+
+export {StatusCodeMapping, BAD_REQUEST_ERROR, UNAUTHORIZED_ERROR, NOT_FOUND_ERROR};

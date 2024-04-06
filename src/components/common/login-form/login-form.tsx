@@ -5,10 +5,12 @@ import {RequestStatus} from '@/utils/const';
 import '@/components/common/login-form/styles.css';
 import {PASSWORD_NOTE, PASSWORD_PATTERN} from '@/components/common/login-form/const';
 import {AuthorizationData} from '@/types/user';
+import {favoritesActions} from '@/store/slices/favorites';
 
 function LoginForm() {
   const { loginUser } = useActionCreators(usersActions);
   const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
+  const { fetchFavorites } = useActionCreators(favoritesActions);
   const [formData, setFormData] = useState<AuthorizationData>({
     login: '',
     password: '',
@@ -21,7 +23,9 @@ function LoginForm() {
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    loginUser(formData);
+    loginUser(formData).then(() => {
+      fetchFavorites();
+    });
   };
 
   return (
@@ -64,4 +68,3 @@ function LoginForm() {
   );
 }
 export default LoginForm;
-

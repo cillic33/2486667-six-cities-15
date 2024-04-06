@@ -1,4 +1,4 @@
-import {useLocation} from 'react-router-dom';
+import {useMatch} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
 import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
@@ -8,7 +8,7 @@ import {memo} from 'react';
 
 function Header(): JSX.Element {
   const isAuth = useAuth();
-  const {pathname} = useLocation();
+  const matchWithLoginPage = useMatch(AppRoute.Login);
 
   return (
     <header className="header">
@@ -21,7 +21,7 @@ function Header(): JSX.Element {
             <ul className="header__nav-list">
               {isAuth &&
                 <HeaderAuth />}
-              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) &&
+              {!isAuth && !matchWithLoginPage &&
                 <HeaderNoAuth />}
             </ul>
           </nav>

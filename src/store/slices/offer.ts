@@ -1,12 +1,8 @@
-import {Offer} from '@/types/offer';
+import {OfferState} from '@/types/offer';
 import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffer} from '@/store/thunks/offer';
 
-interface OfferState {
-  offer: Offer | null;
-  requestStatus: RequestStatus;
-}
 
 const initialState: OfferState = {
   offer: null,
@@ -28,11 +24,7 @@ const offerSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Offer,
-  reducers: {
-    clear(state: OfferState) {
-      state.offer = null;
-    }
-  },
+  reducers: {},
   selectors: {
     offer: (state: OfferState) => state.offer,
     requestStatus: (state: OfferState) => state.requestStatus,

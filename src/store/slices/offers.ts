@@ -1,17 +1,11 @@
-import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import {DEFAULT_CITY, NameSpace, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffers} from '@/store/thunks/offers';
 import {ChangeFavoriteArgs} from '@/types/favorites';
 import {SortOption} from '@/types/sort';
-
-interface OffersState {
-  offers: Offer[];
-  city: City;
-  sortOption: SortOption;
-  requestStatus: RequestStatus;
-}
+import {OffersState} from '@/types/offers';
+import {OfferPreview} from '@/types/offer-preview';
 
 const initialState: OffersState = {
   offers: [],
@@ -52,6 +46,14 @@ const offersSlice = createSlice({
         }
         return item;
       });
+    },
+    updateAllFavoriteStatuses: (state, action: PayloadAction<OfferPreview[]>) => {
+      const favorites = action.payload;
+
+      state.offers = state.offers.map((item) => ({
+        ...item,
+        isFavorite: !!favorites.find((el) => el.id === item.id),
+      }));
     }
   },
   selectors: {

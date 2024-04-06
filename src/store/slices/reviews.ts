@@ -1,13 +1,7 @@
 import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
-import {Review} from '@/types/reviews';
 import {fetchReviews, postReview} from '@/store/thunks/reviews';
-
-interface ReviewsState {
-  reviews: Review[];
-  requestStatus: RequestStatus;
-  postStatus: RequestStatus;
-}
+import {ReviewsState} from '@/types/reviews';
 
 const initialState: ReviewsState = {
   reviews: [],
@@ -41,13 +35,7 @@ const reviewsSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Reviews,
-  reducers: {
-    clear(state: ReviewsState) {
-      state.reviews = [];
-      state.requestStatus = RequestStatus.Idle;
-      state.postStatus = RequestStatus.Idle;
-    },
-  },
+  reducers: {},
   selectors: {
     reviews: (state: ReviewsState) => state.reviews,
     requestStatus: (state: ReviewsState) => state.requestStatus,

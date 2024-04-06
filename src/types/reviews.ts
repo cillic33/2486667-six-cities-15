@@ -1,5 +1,6 @@
 import {User} from '@/types/user';
 import {ReactEventHandler} from 'react';
+import {RequestStatus} from '@/utils/const';
 
 export type Review = {
   id: string;
@@ -7,6 +8,12 @@ export type Review = {
   date: string;
   rating: number;
   user: User;
+}
+
+export interface ReviewsState {
+  reviews: Review[];
+  requestStatus: RequestStatus;
+  postStatus: RequestStatus;
 }
 
 export type PostReviewBody = {

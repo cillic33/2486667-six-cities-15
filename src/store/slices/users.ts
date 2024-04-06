@@ -1,13 +1,7 @@
 import {AuthorizationStatus, NameSpace, RequestStatus} from '@/utils/const';
-import {UserData} from '@/types/user';
+import {UserData, UsersState} from '@/types/user';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
-
-interface UsersState {
-  user: UserData | null;
-  authorizationStatus: AuthorizationStatus;
-  requestStatus: RequestStatus;
-}
 
 const initialState: UsersState = {
   user: null,

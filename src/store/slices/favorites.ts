@@ -1,14 +1,7 @@
 import {NameSpace, RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {changeFavorite, fetchFavorites} from '@/store/thunks/favorites';
-import {FavoriteStatus} from '@/types/favorites';
-import {OfferPreview} from '@/types/offer-preview';
-
-interface FavoritesState {
-  favorites: OfferPreview[];
-  requestStatus: RequestStatus;
-  changeStatus: RequestStatus;
-}
+import {FavoritesState, FavoriteStatus} from '@/types/favorites';
 
 const initialState: FavoritesState = {
   favorites: [],
@@ -50,13 +43,7 @@ const favoritesSlice = createSlice({
       }),
   initialState,
   name: NameSpace.Favorites,
-  reducers: {
-    clear(state: FavoritesState) {
-      state.favorites = [];
-      state.requestStatus = RequestStatus.Idle;
-      state.changeStatus = RequestStatus.Idle;
-    }
-  },
+  reducers: {},
   selectors: {
     favorites: (state: FavoritesState) => state.favorites,
     requestStatus: (state: FavoritesState) => state.requestStatus,
