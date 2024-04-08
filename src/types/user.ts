@@ -14,7 +14,7 @@ export interface UsersState {
 
 
 export type AuthorizationData = {
-  login: string;
+  email: string;
   password: string;
 }
 

@@ -14,7 +14,7 @@ const checkAuth = createAppAsyncThunk<UserData, undefined>(
 
 const loginUser = createAppAsyncThunk<UserData, AuthorizationData>(
   'user/login',
-  async ({login: email, password}, {extra: api}) => {
+  async ({email, password}, {extra: api}) => {
     const {data} = await api.post<UserData>(Endpoint.Login, {email, password});
     saveToken(data.token);
 
