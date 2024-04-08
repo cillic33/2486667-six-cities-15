@@ -100,7 +100,7 @@ export const makeFakeUserData = ():UserData => ({
 } as UserData);
 
 export const makeFakeAuthorisationData = ():AuthorizationData => ({
-  login: 'Oliver.conner@gmail.com',
+  email: 'Oliver.conner@gmail.com',
   password: 'password1',
 });
 
