@@ -21,7 +21,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
     <Container extraClass="page--gray page--main">
       <HelmetComponent title="6 cities" />
       <Header />
-      <MainContainer extraClass="page__main--index">
+      <MainContainer extraClass={currentOffers.length ? 'page__main--index' : 'page__main--index page__main--index-empty'}>
         <h1 className="visually-hidden">Cities</h1>
 
         <Tabs cities={cities} />
