@@ -20,27 +20,25 @@ function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
   );
 
   return (
-    <Link
-      to={`${AppRoute.Offer}/${offer.id}`}
+    <article
       className={`${block}__card place-card`}
+      onMouseEnter={() => {
+        if (onCardHover) {
+          onCardHover(offer.id);
+        }
+      }}
+      onMouseLeave={() => {
+        if (onCardHover) {
+          onCardHover(null);
+        }
+      }}
     >
-      <article
-        onMouseEnter={() => {
-          if (onCardHover) {
-            onCardHover(offer.id);
-          }
-        }}
-        onMouseLeave={() => {
-          if (onCardHover) {
-            onCardHover(null);
-          }
-        }}
-      >
-        {offer.isPremium &&
-          <div className="place-card__mark">
-            <span>Premium</span>
-          </div>}
-        <div className={`${block}__image-wrapper place-card__image-wrapper`}>
+      {offer.isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>}
+      <div className={`${block}__image-wrapper place-card__image-wrapper`}>
+        <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -48,28 +46,28 @@ function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
             height={block === 'favorites' ? '110' : '200'}
             alt={offer.title}
           />
-        </div>
-        <div className={clsx('place-card__info', block === 'favorites' && 'favorites__card-info')}>
-          <div className="place-card__price-wrapper">
-            <div className="place-card__price">
-              <b className="place-card__price-value">&euro;{offer.price}</b>
-              <span className="place-card__price-text">&#47;&nbsp;night</span>
-            </div>
-            <OfferBookmark isFavorite={offer.isFavorite} offerId={offer.id} block='place-card' />
+        </Link>
+      </div>
+      <div className={clsx('place-card__info', block === 'favorites' && 'favorites__card-info')}>
+        <div className="place-card__price-wrapper">
+          <div className="place-card__price">
+            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: offerRatingWidth}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
-          <h2 className="place-card__name">
-            {offer.title}
-          </h2>
-          <p className="place-card__type">{offer.type}</p>
+          <OfferBookmark isFavorite={offer.isFavorite} offerId={offer.id} block='place-card' />
         </div>
-      </article>
-    </Link>
+        <div className="place-card__rating rating">
+          <div className="place-card__stars rating__stars">
+            <span style={{width: offerRatingWidth}}></span>
+            <span className="visually-hidden">Rating</span>
+          </div>
+        </div>
+        <h2 className="place-card__name">
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
+        </h2>
+        <p className="place-card__type">{offer.type}</p>
+      </div>
+    </article>
   );
 }
 
