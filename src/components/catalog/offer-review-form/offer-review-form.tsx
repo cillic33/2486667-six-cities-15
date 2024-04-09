@@ -6,7 +6,11 @@ import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import {RequestStatus} from '@/utils/const';
 import {toast} from 'react-toastify';
-import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
+import {
+  MAX_REVIEW_LENGTH,
+  MIN_REVIEW_LENGTH,
+  SUBMIT_SUCCESS_MESSAGE
+} from '@/components/catalog/offer-review-form/const';
 
 type OfferReviewFormProps = {
   scrollToTitle: () => void;
@@ -20,6 +24,12 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
   });
   const { postReview } = useActionCreators(reviewsActions);
   const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
+  const isSubmitDisabled =
+    (formData.rating) === 0 ||
+    (formData.comment).length < MIN_REVIEW_LENGTH ||
+    (formData.comment).length > MAX_REVIEW_LENGTH ||
+    postReviewStatus === RequestStatus.Loading;
+  const isCommentDisabled = postReviewStatus === RequestStatus.Loading;
 
   const handleFieldChange: HandleFieldChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -63,8 +73,7 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleFieldChange}
         value={formData.comment}
-        maxLength={300}
-        disabled={postReviewStatus === RequestStatus.Loading}
+        disabled={isCommentDisabled}
       >
       </textarea>
 
@@ -76,7 +85,7 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={(formData.rating) === 0 || (formData.comment).length < 50 || postReviewStatus === RequestStatus.Loading}
+          disabled={isSubmitDisabled}
           onClick={handleFormSubmit}
         >
           Submit

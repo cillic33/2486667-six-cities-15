@@ -12,6 +12,7 @@ type RatingStarsProps = {
 
 function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
   const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
+  const isRatingDisabled = postReviewStatus === RequestStatus.Loading;
 
   return (
     <>
@@ -24,7 +25,7 @@ function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
             value={value}
             onChange={handleFieldChange}
             checked={Number(rating) === Number(value) && Number(rating) !== 0}
-            disabled={postReviewStatus === RequestStatus.Loading}
+            disabled={isRatingDisabled}
           />
           <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
             <svg className="form__star-image" width="37" height="33">
