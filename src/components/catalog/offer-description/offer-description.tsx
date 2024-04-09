@@ -3,6 +3,7 @@ import {getRatingWidth} from '@/utils';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
 import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/const';
 import {memo} from 'react';
+import {clsx} from "clsx";
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -56,7 +57,7 @@ function OfferDescription({ offer }: OfferDescriptionProps):JSX.Element {
       <div className="offer__host">
         <h2 className="offer__host-title">Meet the host</h2>
         <div className="offer__host-user user">
-          <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+          <div className={clsx('offer__avatar-wrapper', offer.host.isPro && 'offer__avatar-wrapper--pro', 'user__avatar-wrapper')}>
             <img className="offer__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
           </div>
           <span className="offer__user-name">
