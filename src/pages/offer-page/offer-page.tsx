@@ -18,13 +18,14 @@ import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import HelmetComponent from '@/components/common/helmet-component/helmet-component';
 import LoadingPage from '@/pages/loading-page/loading-page';
+import {MAX_NEAR_OFFERS_ON_PAGE} from "@/pages/offer-page/const";
 
 export default function OfferPage(): JSX.Element {
   const offer = useAppSelector(offerSelectors.offer);
   const offerRequestStatus = useAppSelector(offerSelectors.requestStatus);
   const reviews = useAppSelector(reviewsSelectors.reviews);
   const reviewsRequestStatus = useAppSelector(reviewsSelectors.requestStatus);
-  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
+  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, MAX_NEAR_OFFERS_ON_PAGE);
   const nearRequestStatus = useAppSelector(nearbySelectors.requestStatus);
 
   const { fetchOffer } = useActionCreators(offerActions);

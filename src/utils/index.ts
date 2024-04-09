@@ -18,7 +18,9 @@ function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
 }
 
 function getRatingWidth(rating: number): string {
-  return `${((Math.round(rating) / 5) * 100) + 1}%`;
+  const MAX_RATING_STARS = 5;
+  const RESERVE_FOR_WIDTH = 1;
+  return `${((Math.round(rating) / MAX_RATING_STARS) * 100) + RESERVE_FOR_WIDTH}%`;
 }
 
 const getConvertDate = (str: string): ConvertDate => {
