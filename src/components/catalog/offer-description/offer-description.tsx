@@ -3,7 +3,7 @@ import {getRatingWidth} from '@/utils';
 import OfferBookmark from '@/components/catalog/offer-bookmark';
 import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from '@/components/catalog/offer-description/const';
 import {memo} from 'react';
-import {clsx} from "clsx";
+import {clsx} from 'clsx';
 
 type OfferDescriptionProps = {
   offer: Offer;
