@@ -1,7 +1,9 @@
 import {RATING} from './const';
 import {Fragment} from 'react';
-import '@/components/common/rating-stars/styles.css';
 import {HandleFieldChange} from '@/types/reviews';
+import {RequestStatus} from '@/utils/const';
+import {useAppSelector} from "@/hooks/store/store";
+import {reviewsSelectors} from "@/store/slices/reviews";
 
 type RatingStarsProps = {
   handleFieldChange: HandleFieldChange;
@@ -9,6 +11,8 @@ type RatingStarsProps = {
 }
 
 function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
+  const postReviewStatus = useAppSelector(reviewsSelectors.postStatus);
+
   return (
     <>
       {RATING.map(({value, title}) => (
@@ -20,6 +24,7 @@ function RatingStars({ handleFieldChange, rating }: RatingStarsProps) {
             value={value}
             onChange={handleFieldChange}
             checked={Number(rating) === Number(value) && Number(rating) !== 0}
+            disabled={postReviewStatus === RequestStatus.Loading}
           />
           <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
             <svg className="form__star-image" width="37" height="33">

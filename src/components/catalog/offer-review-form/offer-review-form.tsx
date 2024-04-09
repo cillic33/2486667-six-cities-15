@@ -7,7 +7,6 @@ import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
 import {RequestStatus} from '@/utils/const';
-import '@/components/catalog/offer-review-form/styles.css';
 
 type OfferReviewFormProps = {
   scrollToTitle: () => void;
@@ -48,38 +47,37 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <fieldset className="reviews__fieldset" disabled={postReviewStatus === RequestStatus.Loading}>
-        <label className="reviews__label form__label" htmlFor="review">Your review</label>
-        <div className="reviews__rating-form form__rating">
-          <RatingStars handleFieldChange={handleFieldChange} rating={formData.rating} />
-        </div>
+      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      <div className="reviews__rating-form form__rating">
+        <RatingStars handleFieldChange={handleFieldChange} rating={formData.rating} />
+      </div>
 
-        <textarea
-          className="reviews__textarea form__textarea"
-          id="comment"
-          name="comment"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-          onChange={handleFieldChange}
-          value={formData.comment}
-          maxLength={300}
+      <textarea
+        className="reviews__textarea form__textarea"
+        id="comment"
+        name="comment"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+        onChange={handleFieldChange}
+        value={formData.comment}
+        maxLength={300}
+        disabled={postReviewStatus === RequestStatus.Loading}
+      >
+      </textarea>
+
+      <div className="reviews__button-wrapper">
+        <p className="reviews__help">
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe
+          your stay with at least <b className="reviews__text-amount">50 characters</b>.
+        </p>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={(formData.rating) === 0 || (formData.comment).length < 50 || postReviewStatus === RequestStatus.Loading}
+          onClick={handleFormSubmit}
         >
-        </textarea>
-
-        <div className="reviews__button-wrapper">
-          <p className="reviews__help">
-            To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-            your stay with at least <b className="reviews__text-amount">50 characters</b>.
-          </p>
-          <button
-            className="reviews__submit form__submit button"
-            type="submit"
-            disabled={(formData.rating) === 0 || (formData.comment).length < 50}
-            onClick={handleFormSubmit}
-          >
-            Submit
-          </button>
-        </div>
-      </fieldset>
+          Submit
+        </button>
+      </div>
     </form>
   );
 }
