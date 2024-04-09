@@ -21,10 +21,10 @@ export default function FavoritesPage(): JSX.Element {
   }
 
   return (
-    <Container>
+    <Container extraClass={!favorites.length ? 'page--favorites-empty' : undefined}>
       <HelmetComponent title="6 cities: favorites" />
       <Header />
-      <MainContainer extraClass="page__main--favorites">
+      <MainContainer extraClass={favorites.length ? 'page__main--favorites' : 'page__main--favorites page__main--favorites-empty'}>
         <div className="page__favorites-container container">
           {favorites.length ?
             <FavoritesList favorites={favoritesByLocation} /> :
