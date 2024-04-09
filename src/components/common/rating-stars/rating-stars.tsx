@@ -2,8 +2,8 @@ import {RATING} from './const';
 import {Fragment} from 'react';
 import {HandleFieldChange} from '@/types/reviews';
 import {RequestStatus} from '@/utils/const';
-import {useAppSelector} from "@/hooks/store/store";
-import {reviewsSelectors} from "@/store/slices/reviews";
+import {useAppSelector} from '@/hooks/store/store';
+import {reviewsSelectors} from '@/store/slices/reviews';
 
 type RatingStarsProps = {
   handleFieldChange: HandleFieldChange;

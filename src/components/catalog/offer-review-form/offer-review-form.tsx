@@ -1,12 +1,12 @@
-import {FormEvent, useState} from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import RatingStars from '@/components/common/rating-stars/rating-stars';
 import {HandleFieldChange, PostReviewBody} from '@/types/reviews';
 import {useParams} from 'react-router-dom';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
+import {RequestStatus} from '@/utils/const';
 import {toast} from 'react-toastify';
 import {SUBMIT_SUCCESS_MESSAGE} from '@/components/catalog/offer-review-form/const';
-import {RequestStatus} from '@/utils/const';
 
 type OfferReviewFormProps = {
   scrollToTitle: () => void;
@@ -35,15 +35,19 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
       rating: Number(formData.rating),
     };
 
-    postReview(postReviewBody).then(() => {
+    postReview(postReviewBody);
+  };
+
+  useEffect(() => {
+    if (postReviewStatus === RequestStatus.Success) {
       toast.info(SUBMIT_SUCCESS_MESSAGE);
       setFormData({
         comment: '',
         rating: 0,
       });
       scrollToTitle();
-    });
-  };
+    }
+  }, [postReviewStatus, scrollToTitle]);
 
   return (
     <form className="reviews__form form" action="#" method="post">
