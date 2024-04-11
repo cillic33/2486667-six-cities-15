@@ -1,7 +1,7 @@
 import {describe, expect, it} from 'vitest';
 import {screen} from '@testing-library/react';
 import {renderWithRouterAndProviders} from '@/utils/mock-component';
-import OfferReviewEmpty from "@/components/catalog/offer-review-empty/offer-review-empty";
+import OfferReviewEmpty from '@/components/catalog/offer-review-empty/offer-review-empty';
 
 describe('Component: OfferReviewEmpty', () => {
   it('should render correctly', () => {
