@@ -64,6 +64,7 @@ function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.
       type="button"
       onClick={handleBookmarkClick}
       disabled={changeFavoriteStatus === RequestStatus.Loading}
+      data-testid="bookmark-button"
     >
       <svg
         className={`${block}__bookmark-icon`}

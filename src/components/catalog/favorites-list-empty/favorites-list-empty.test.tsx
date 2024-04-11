@@ -1,6 +1,6 @@
-import {describe, expect, it} from "vitest";
-import {render, screen} from "@testing-library/react";
-import FavoritesListEmpty from "@/components/catalog/favorites-list-empty/favorites-list-empty";
+import {describe, expect, it} from 'vitest';
+import {render, screen} from '@testing-library/react';
+import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favorites-list-empty';
 
 describe('Component: FavoritesListEmpty', () => {
   it('should render correctly', () => {

@@ -109,3 +109,5 @@ export const makeFakeAuthorizationStatus = (status: AuthorizationStatus):Authori
 export const makeFakeFavoritesList = (): Favorites => ({
   'Paris': [makeFakePreviewOfferCard()],
 });
+
+export const makeFakeTypeBlock = (): string => 'place-card';
