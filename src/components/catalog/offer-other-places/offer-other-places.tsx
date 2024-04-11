@@ -8,7 +8,7 @@ type OfferOtherPlacesProps = {
 function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX.Element {
   return (
     <div className="container">
-      <section className="near-places places">
+      <section className="near-places places" data-testid="offer-other-places">
         <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
         <div className="near-places__list places__list">
