@@ -32,11 +32,19 @@ export const makeFakePreviewOfferCard = (isFavorite = false): OfferPreview => ({
 } as OfferPreview);
 
 export const makeFakeOfferCard = (isFavorite = false): Offer => ({
-  id: 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c',
-  title: 'Nice, cozy, warm big bed apartment',
-  type: 'apartment',
-  price: 447,
-  previewImage: 'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
+  id: '82a8c305-b639-4a21-8fca-274344b94488',
+  title: 'Amazing and Extremely Central Flat',
+  description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
+  type: 'room',
+  price: 246,
+  images: [
+    'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
+    'https://15.design.htmlacademy.pro/static/hotel/17.jpg',
+    'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
+    'https://15.design.htmlacademy.pro/static/hotel/13.jpg',
+    'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+    'https://15.design.htmlacademy.pro/static/hotel/10.jpg'
+  ],
   city: {
     name: 'Paris',
     location: {
@@ -50,9 +58,23 @@ export const makeFakeOfferCard = (isFavorite = false): Offer => ({
     longitude: 2.342499,
     zoom: 16
   },
+  goods: [
+    'Heating',
+    'Baby seat',
+    'Wi-Fi',
+    'Fridge',
+    'Cable TV'
+  ],
+  host: {
+    isPro: true,
+    name: 'Angelina',
+    avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+  },
+  isPremium: false,
   isFavorite: isFavorite,
-  isPremium: true,
-  rating: 3.1
+  rating: 2.7,
+  bedrooms: 1,
+  maxAdults: 1
 } as Offer);
 
 export const makeFakeOfferId = (): string => 'd1b7c2d6-9a02-4426-a2a0-16a50f05830c';

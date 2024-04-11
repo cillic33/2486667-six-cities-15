@@ -17,7 +17,7 @@ function OfferDescription({ offer }: OfferDescriptionProps):JSX.Element {
           <span>Premium</span>
         </div>}
       <div className="offer__name-wrapper">
-        <h1 className="offer__name">
+        <h1 className="offer__name" data-testid="offer-name">
           {offer.title}
         </h1>
         <OfferBookmark isFavorite={offer.isFavorite} offerId={offer.id} block='offer' />

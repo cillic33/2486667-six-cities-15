@@ -2,7 +2,7 @@ import {describe, expect, it} from 'vitest';
 import {screen} from '@testing-library/react';
 import {renderWithRouterAndProviders} from '@/utils/mock-component';
 import {makeFakePreviewOfferCard} from '@/utils/mock';
-import MemoOfferCard from "@/components/catalog/offer-card/offer-card";
+import MemoOfferCard from '@/components/catalog/offer-card/offer-card';
 
 describe('Component: OfferCard', () => {
   it('should render correctly', () => {
