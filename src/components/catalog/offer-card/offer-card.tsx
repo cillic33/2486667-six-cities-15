@@ -32,6 +32,7 @@ function OfferCard({ offer, block, onCardHover }: CardProps): JSX.Element {
           onCardHover(null);
         }
       }}
+      data-testid="offer-card"
     >
       {offer.isPremium &&
         <div className="place-card__mark">
