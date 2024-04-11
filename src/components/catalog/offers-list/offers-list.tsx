@@ -47,7 +47,7 @@ function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Elemen
 
         <OffersSort />
 
-        <div className="cities__places-list places__list tabs__content">
+        <div className="cities__places-list places__list tabs__content" data-testid="offers-list">
           {sortedOffers && sortedOffers.map((offer) => (
             <OfferCard key={offer.id} offer={offer} block={block} onCardHover={handleCardHover} />
           ))}
