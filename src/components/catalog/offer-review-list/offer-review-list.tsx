@@ -23,7 +23,7 @@ function OfferReviewList({ reviews }: OfferReviewListProps): JSX.Element {
   return (
     <>
       {sortedVisibleReviews.length !== 0 && (
-        <ul className="reviews__list">
+        <ul className="reviews__list" data-testid="offer-review-list">
           {sortedVisibleReviews.map((review) => (
             <OfferReviewItem review={review} key={review.id} />
           ))}

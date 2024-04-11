@@ -60,7 +60,7 @@ function OfferReviewForm({ scrollToTitle }: OfferReviewFormProps): JSX.Element {
   }, [postReviewStatus, scrollToTitle]);
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" data-testid="offer-review-form">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <RatingStars handleFieldChange={handleFieldChange} rating={formData.rating} />

@@ -19,7 +19,7 @@ function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
   };
 
   return (
-    <section className="offer__reviews reviews">
+    <section className="offer__reviews reviews" data-testid="offer-reviews">
       <h2 className="reviews__title" ref={titleRef}>Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
       <OfferReviewList reviews={reviews} />
