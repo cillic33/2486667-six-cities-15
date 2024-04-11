@@ -132,6 +132,6 @@ export const makeFakeFavoritesList = (): Favorites => ({
   'Paris': [makeFakePreviewOfferCard()],
 });
 
-export const makeFakeTypeBookmark = (): string => 'place-card';
+export const makeFakeBookmarkType = (): string => 'place-card';
 
 export const makeFakeOfferType = (): string => 'cities';
