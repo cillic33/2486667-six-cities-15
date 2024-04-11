@@ -5,10 +5,10 @@ import MemoFooter from '@/components/common/footer/footer';
 
 describe('Component: Footer', () => {
   it('should render correctly', () => {
-    const footerTextId = 'footer';
+    const footerTestId = 'footer';
 
     renderWithRouterAndProviders(<MemoFooter />);
 
-    expect(screen.getByTestId(footerTextId)).toBeInTheDocument();
+    expect(screen.getByTestId(footerTestId)).toBeInTheDocument();
   });
 });
