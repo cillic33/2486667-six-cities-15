@@ -7,12 +7,12 @@ import {makeFakeFavoritesList} from '@/utils/mock';
 describe('Component: FavoritesList', () => {
   it('should render correctly', () => {
     const favoritesListTestId = 'favorites-list';
-    const favoritesH1Text = 'Saved listing';
+    const expectedH1Text = 'Saved listing';
     const favorites = makeFakeFavoritesList();
 
     renderWithRouterAndProviders(<FavoritesList favorites={favorites} />);
 
     expect(screen.getByTestId(favoritesListTestId)).toBeInTheDocument();
-    expect(screen.getByText(favoritesH1Text)).toBeInTheDocument();
+    expect(screen.getByText(expectedH1Text)).toBeInTheDocument();
   });
 });
