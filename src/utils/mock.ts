@@ -2,7 +2,7 @@ import {OfferPreview} from '@/types/offer-preview';
 import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import {SortOption} from '@/types/sort';
-import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
+import {ChangeFavoriteArgs, Favorites, FavoriteStatus} from '@/types/favorites';
 import {PostReviewBody, Review} from '@/types/reviews';
 import {AuthorizationData, UserData} from '@/types/user';
 import {AuthorizationStatus} from '@/utils/const';
@@ -105,3 +105,7 @@ export const makeFakeAuthorisationData = ():AuthorizationData => ({
 });
 
 export const makeFakeAuthorizationStatus = (status: AuthorizationStatus):AuthorizationStatus => status;
+
+export const makeFakeFavoritesList = (): Favorites => ({
+  'Paris': [makeFakePreviewOfferCard()],
+});
