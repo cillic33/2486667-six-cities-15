@@ -24,6 +24,7 @@ function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Eleme
         'places__options--custom',
         isOn && 'places__options--opened'
       )}
+      data-testid="offers-sort-list"
     >
       {SORT_OPTIONS.map((option) => (
         <li
