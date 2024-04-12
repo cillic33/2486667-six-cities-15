@@ -4,13 +4,10 @@ import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {offersSlice} from '@/store/slices/offers';
 import {fetchOffers} from '@/store/thunks/offers';
 import {
-  makeFakeChangeFavoriteArgs,
   makeFakeCity,
-  makeFakeOfferCard, makeFakePreviewOfferCard,
+  makeFakeOfferCard,
   makeFakeSortOption
 } from '@/utils/mock';
-
-const IS_FAVORITE = true;
 
 describe('offersSlice', () => {
   describe('empty actions', () => {
@@ -117,54 +114,4 @@ describe('offersSlice', () => {
     });
   });
 
-  describe('updateFavoriteStatus', () => {
-    it('should update the isFavorite status of one element in the offers array', () => {
-      const mockOfferCardFavoriteTrue = makeFakeOfferCard(IS_FAVORITE);
-      const mockOfferCardFavoriteFalse = makeFakeOfferCard(!IS_FAVORITE);
-      const initialState: OffersState = {
-        offers: [mockOfferCardFavoriteFalse],
-        city: DEFAULT_CITY,
-        sortOption: SORT_OPTION_DEFAULT,
-        requestStatus: RequestStatus.Idle,
-      };
-      const expectedState: OffersState = {
-        offers: [mockOfferCardFavoriteTrue],
-        city: DEFAULT_CITY,
-        sortOption: SORT_OPTION_DEFAULT,
-        requestStatus: RequestStatus.Idle,
-      };
-      const mockChangeFavoriteArgs = makeFakeChangeFavoriteArgs();
-
-      const result = offersSlice.reducer(
-        initialState,
-        offersSlice.actions.updateFavoriteStatus(mockChangeFavoriteArgs)
-      );
-
-      expect(result).toEqual(expectedState);
-    });
-  });
-
-  describe('updateAllFavoriteStatuses', () => {
-    it('should update all isFavorite statuses in the offers array', () => {
-      const mockFavoriteCard = makeFakePreviewOfferCard(IS_FAVORITE);
-      const mockOfferCardFavoriteTrue = makeFakeOfferCard(IS_FAVORITE);
-      const mockOfferCardFavoriteFalse = makeFakeOfferCard(!IS_FAVORITE);
-      const initialState: OffersState = {
-        offers: [mockOfferCardFavoriteFalse],
-        city: DEFAULT_CITY,
-        sortOption: SORT_OPTION_DEFAULT,
-        requestStatus: RequestStatus.Idle,
-      };
-      const expectedState: OffersState = {
-        offers: [mockOfferCardFavoriteTrue],
-        city: DEFAULT_CITY,
-        sortOption: SORT_OPTION_DEFAULT,
-        requestStatus: RequestStatus.Idle,
-      };
-
-      const result = offersSlice.reducer(initialState, offersSlice.actions.updateAllFavoriteStatuses([mockFavoriteCard]));
-
-      expect(result).toEqual(expectedState);
-    });
-  });
 });

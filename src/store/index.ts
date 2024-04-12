@@ -6,8 +6,9 @@ import {offerSlice} from '@/store/slices/offer';
 import {nearbySlice} from '@/store/slices/nearby';
 import {favoritesSlice} from '@/store/slices/favorites';
 import {reviewsSlice} from '@/store/slices/reviews';
+import {RootState} from '@/types/store';
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,
   [offerSlice.name]: offerSlice.reducer,
   [nearbySlice.name]: nearbySlice.reducer,
@@ -17,7 +18,7 @@ const reducer = combineReducers({
 });
 
 export const store = configureStore({
-  reducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
@@ -25,3 +26,16 @@ export const store = configureStore({
       },
     }),
 });
+
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleWare) =>
+      getDefaultMiddleWare({
+        thunk: {
+          extraArgument: createAPI(),
+        }
+      })
+  });
+}

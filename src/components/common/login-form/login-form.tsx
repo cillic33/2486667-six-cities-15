@@ -12,7 +12,7 @@ function LoginForm() {
   const requestUsersStatus = useAppSelector(usersSelectors.requestStatus);
   const { fetchFavorites } = useActionCreators(favoritesActions);
   const [formData, setFormData] = useState<AuthorizationData>({
-    login: '',
+    email: '',
     password: '',
   });
 
@@ -40,10 +40,10 @@ function LoginForm() {
           <input
             className="login__input form__input"
             type="email"
-            name="login"
+            name="email"
             placeholder="Email"
             required
-            value={formData.login}
+            value={formData.email}
             onChange={handleFieldsChange}
           />
         </div>

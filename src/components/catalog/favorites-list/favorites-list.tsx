@@ -13,7 +13,7 @@ function FavoritesList({ favorites }: FavoritesListProps): JSX.Element {
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
 
-      <ul className="favorites__list">
+      <ul className="favorites__list" data-testid="favorites-list">
         {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => {
           const city = CITIES.find((item: City) => (item.name === cityName));
           const cityPath = `/${city?.id}` || '';
