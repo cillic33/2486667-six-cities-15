@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import {useEffect, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
@@ -7,7 +7,6 @@ import {City} from '@/types/city';
 import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
 import {offersSelectors} from '@/store/slices/offers';
-import {useLocation} from 'react-router-dom';
 import {getPageTitle, getSortedOffers} from '@/components/catalog/offers-list/utils';
 
 type OffersListProps = {
@@ -21,7 +20,6 @@ function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Elemen
   const sortOption = useAppSelector(offersSelectors.sortOption);
   const sortedOffers = getSortedOffers(sortOption, offers);
   const containerRef = useRef<HTMLHeadingElement | null>(null);
-  const { pathname } = useLocation();
 
   const handleCardHover = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
@@ -29,14 +27,6 @@ function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Elemen
   };
 
   const points = offers.map((offer) => offer.location);
-
-  const scrollToTopContainer = () => {
-    //containerRef.current?.scrollTo(0, 0);
-  };
-
-  useEffect(() => {
-    scrollToTopContainer();
-  }, [pathname]);
 
   return (
     <div className="cities__places-container container">
