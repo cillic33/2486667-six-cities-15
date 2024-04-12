@@ -6,8 +6,9 @@ import OfferReviewForm from '@/components/catalog/offer-review-form/offer-review
 describe('Component: OfferReviewForm', () => {
   it('should render correctly', () => {
     const offerReviewFormTestId = 'offer-review-form';
+    const mockScrollToTitle = () => {return;}
 
-    renderWithRouterAndProviders(<OfferReviewForm />);
+    renderWithRouterAndProviders(<OfferReviewForm scrollToTitle={mockScrollToTitle} />);
 
     expect(screen.getByTestId(offerReviewFormTestId)).toBeInTheDocument();
   });
