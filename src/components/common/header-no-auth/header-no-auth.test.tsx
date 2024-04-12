@@ -1,13 +1,13 @@
 import {screen} from '@testing-library/react';
 import {describe, it, expect} from 'vitest';
 import {renderWithRouterAndProviders} from '@/utils/mock-component';
-import Header from '@/components/common/header/header';
+import HeaderNoAuth from '@/components/common/header-no-auth/header-no-auth';
 
-describe('Component: Header', () => {
+describe('Component: HeaderNoAuth', () => {
   it('should render correctly', () => {
-    const expectedTestId = 'header';
+    const expectedTestId = 'header-no-auth-li';
 
-    renderWithRouterAndProviders(<Header />);
+    renderWithRouterAndProviders(<HeaderNoAuth />);
 
     expect(screen.getByTestId(expectedTestId)).toBeInTheDocument();
   });

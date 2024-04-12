@@ -5,10 +5,10 @@ import HeaderAuth from '@/components/common/header-auth/header-auth';
 
 describe('Component: HeaderAuth', () => {
   it('should render correctly', () => {
-    const footerTestId = 'header-auth-li';
+    const expectedTestId = 'header-auth-li';
 
     renderWithRouterAndProviders(<HeaderAuth />);
 
-    expect(screen.getByTestId(footerTestId)).toBeInTheDocument();
+    expect(screen.getByTestId(expectedTestId)).toBeInTheDocument();
   });
 });

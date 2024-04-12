@@ -1,13 +1,13 @@
 import {screen} from '@testing-library/react';
 import {describe, it, expect} from 'vitest';
 import {renderWithRouterAndProviders} from '@/utils/mock-component';
-import Header from '@/components/common/header/header';
+import HeaderLogo from '@/components/common/header-logo/header-logo';
 
-describe('Component: Header', () => {
+describe('Component: HeaderLogo', () => {
   it('should render correctly', () => {
-    const expectedTestId = 'header';
+    const expectedTestId = 'header-logo';
 
-    renderWithRouterAndProviders(<Header />);
+    renderWithRouterAndProviders(<HeaderLogo />);
 
     expect(screen.getByTestId(expectedTestId)).toBeInTheDocument();
   });
