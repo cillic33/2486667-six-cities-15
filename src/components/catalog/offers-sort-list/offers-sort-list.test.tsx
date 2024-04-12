@@ -10,8 +10,9 @@ describe('Component: OffersSortList', () => {
   it('should render correctly', () => {
     const offersSortListTestId = 'offers-sort-list';
     const mockSortOption = makeFakeSortOption();
+    const mockOff = () => {};
 
-    renderWithRouterAndProviders(<OffersSortList sortOption={mockSortOption} isOn={IS_ON} />);
+    renderWithRouterAndProviders(<OffersSortList sortOption={mockSortOption} isOn={IS_ON} off={mockOff} />);
 
     expect(screen.getByTestId(offersSortListTestId)).toBeInTheDocument();
   });

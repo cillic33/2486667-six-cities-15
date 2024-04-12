@@ -8,7 +8,7 @@ describe('Component: FavoritesList', () => {
     const expectedTestId = 'container-div';
     const mockPageClass = 'page--gray page--main';
 
-    renderWithRouterAndProviders(<Container extraClass={mockPageClass} dataTestid={expectedTestId}></Container>);
+    renderWithRouterAndProviders(<Container extraClass={mockPageClass} dataTestid={expectedTestId}><div></div></Container>);
 
     expect(screen.getByTestId(expectedTestId)).toBeInTheDocument();
   });
