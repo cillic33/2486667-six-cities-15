@@ -113,7 +113,7 @@ export const makeFakeReviewBody = ():PostReviewBody => ({
   rating: 3,
 } as PostReviewBody);
 
-export const makeFakeUserData = ():UserData => ({
+export const makeFakeUser = ():UserData => ({
   email: 'oliver.conner@gmail.com',
   token: 'b2xpdmVyLmNvbm5lckBnbWFpbC5jb20=',
   name: 'Oliver.conner',

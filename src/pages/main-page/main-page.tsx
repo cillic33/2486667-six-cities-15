@@ -18,7 +18,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
   const currentOffers = useAppSelector(offersSelectors.cityOffers);
 
   return (
-    <Container extraClass="page--gray page--main">
+    <Container extraClass="page--gray page--main" dataTestid="main-page">
       <HelmetComponent title="6 cities" />
       <Header />
       <MainContainer extraClass={currentOffers.length ? 'page__main--index' : 'page__main--index page__main--index-empty'}>

@@ -3,7 +3,7 @@ import {AuthorizationStatus, RequestStatus} from '@/utils/const';
 import {UsersState} from '@/types/user';
 import {usersSlice} from '@/store/slices/users';
 import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
-import {makeFakeAuthorisationData, makeFakeAuthorizationStatus, makeFakeUserData} from '@/utils/mock';
+import {makeFakeAuthorisationData, makeFakeAuthorizationStatus, makeFakeUser} from '@/utils/mock';
 
 describe('usersSlice', () => {
   describe('empty actions', () => {
@@ -48,7 +48,7 @@ describe('usersSlice', () => {
     });
 
     it('should set "user" to user data, "authorizationStatus" to "AuthorizationStatus.Authorized", "requestStatus" to "RequestStatus.Success" with "checkAuth.fulfilled"', () => {
-      const mockUserData = makeFakeUserData();
+      const mockUserData = makeFakeUser();
       const expectedState: UsersState = {
         user: mockUserData,
         authorizationStatus: AuthorizationStatus.Authorized,
@@ -89,7 +89,7 @@ describe('usersSlice', () => {
 
     it('should set "user" to user data, "authorizationStatus" to "AuthorizationStatus.Authorized", "requestStatus" to "RequestStatus.Success" with "loginUser.fulfilled"', () => {
       const mockAuthorisationData = makeFakeAuthorisationData();
-      const mockUserData = makeFakeUserData();
+      const mockUserData = makeFakeUser();
       const expectedState: UsersState = {
         user: mockUserData,
         authorizationStatus: AuthorizationStatus.Authorized,
@@ -155,7 +155,7 @@ describe('usersSlice', () => {
 
   describe('setUser', () => {
     it('should set "user" to user data with "setUser" action', () => {
-      const mockUserData = makeFakeUserData();
+      const mockUserData = makeFakeUser();
       const expectedState: UsersState = {
         user: mockUserData,
         authorizationStatus: AuthorizationStatus.Unknown,

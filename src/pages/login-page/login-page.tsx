@@ -12,7 +12,7 @@ export default function LoginPage() {
   const randomRoute: CityShot = getRandomCity(appRouteOnlyCities);
 
   return (
-    <Container extraClass="page--gray page--login">
+    <Container extraClass="page--gray page--login" dataTestid="login-page">
       <HelmetComponent title="6 cities: authorization" />
       <Header />
       <MainContainer extraClass="page__main--login">

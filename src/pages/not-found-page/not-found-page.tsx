@@ -20,7 +20,7 @@ export default function NotFoundPage({ type }: NotFoundPageProps): JSX.Element {
   const pathname = decodeURIComponent(location.pathname);
 
   return (
-    <Container extraClass="page--gray page--main">
+    <Container extraClass="page--gray page--main" dataTestid="not-found-page">
       <HelmetComponent title="6 cities: error 404 page" />
 
       <Header />

@@ -31,7 +31,7 @@ function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Elemen
   const points = offers.map((offer) => offer.location);
 
   const scrollToTopContainer = () => {
-    containerRef.current?.scrollTo(0, 0);
+    //containerRef.current?.scrollTo(0, 0);
   };
 
   useEffect(() => {

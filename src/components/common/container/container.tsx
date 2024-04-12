@@ -4,11 +4,15 @@ import {clsx} from 'clsx';
 type ExtraContainerProps = {
   children: ReactNode;
   extraClass?: string;
+  dataTestid?: string;
 }
 
-function Container({ children, extraClass }: ExtraContainerProps): JSX.Element {
+function Container({ children, extraClass, dataTestid }: ExtraContainerProps): JSX.Element {
   return (
-    <div className={clsx('page', extraClass ? extraClass : '')}>
+    <div
+      className={clsx('page', extraClass ? extraClass : '')}
+      data-testid={dataTestid}
+    >
       {children}
     </div>
   );
